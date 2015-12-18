@@ -68,12 +68,13 @@ namespace FPS.Model
         }
         public void setEnemyDead(float coordX, float coordY, float crosshairSize)
         {
-            
+            // tar in crosshairen senare//
+            // lade in crosshair storleken för att täcka fungerar fortfarande inte//
             foreach (Enemy enemies in enemyspawn)
             {
-                Vector2 MonsterlogicMouse = new Vector2(enemies.Pose.X, enemies.Pose.Y);
+                Vector2 MonsterlogicMouse = new Vector2(coordX, coordY);
 
-                bool containCoord = enemies.GetAllSize.Contains(MonsterlogicMouse.X, MonsterlogicMouse.Y);
+                bool containCoord = enemies.GetAllSize.Contains(MonsterlogicMouse.X , MonsterlogicMouse.Y);
                 Console.Write(containCoord);
 
                 if (containCoord)
