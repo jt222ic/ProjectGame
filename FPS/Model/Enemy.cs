@@ -10,48 +10,44 @@ namespace FPS.Model
     class Enemy
     {
         public float currentHealth = 7000;
-        private float waittime = 40;
+        private float waittime = 80;
         private float cooldown = 1;
         public bool Dead = false;
+        private int Deadcondition = 0;
         public int shootdamage = 4;
-        private int enemyHealth = 10;
+        public float enemyHealth = 4;
         Player player;
-        private Vector2 position = new Vector2(0.5f,100);
+        private Vector2 position = new Vector2(0.5f,0.5f);
         private float Monstersize = 100;
         private Vector2 enemymovement = new Vector2(0.5f, 0.5f);
         private Vector2 RandomPosition;
-        Rectangle destiny;
-
-      
-
+        
         public Enemy(Player player, Random rand)
         {
             
             this.player = player;
-
            RandomPosition = new Vector2(position.X *40, (float)rand.NextDouble() );
             RandomPosition.Normalize();
             RandomPosition = RandomPosition * ((float)rand.NextDouble() + 200);
             enemymovement = RandomPosition;
-            destiny = new Rectangle((int)position.X, (int)position.Y, (int)Monstersize, (int)Monstersize);
+           // destiny = new Rectangle((int)position.X, (int)position.Y, (int)Monstersize, (int)Monstersize);
         }
 
         public void EnemyHurtsPlayer()
         {
-            if (enemyHealth == 0)
+            if (enemyHealth ==0)
             {
-                Dead = true;   
+                Dead = true;
+                Console.WriteLine("enemy dead");
             }
-            else if (waittime > 0 && enemyHealth > 0)
+            else if (waittime > 0 && enemyHealth > Deadcondition)
             {
                 waittime -= cooldown;
-
             }
-            if (waittime == 0 && enemyHealth > 0)
+            if (waittime == 0 && enemyHealth > Deadcondition)
             {
-
                 player.Health -= shootdamage;
-                waittime += 40;
+                waittime += 80;
             }
         }
 
@@ -60,9 +56,14 @@ namespace FPS.Model
             position += enemymovement * time;
             
         }
-        public bool alive()
+        public bool alive
         {
-            return Dead;
+            get{ return Dead; }
+            set
+            {
+                Dead = value;
+            }
+
         }
         public Vector2 Pose
         {
@@ -86,7 +87,7 @@ namespace FPS.Model
         {
             get
             {
-                return destiny;
+                return new Rectangle((int)position.X, (int)position.Y, (int)Monstersize, (int)Monstersize);
             }
         }
     }

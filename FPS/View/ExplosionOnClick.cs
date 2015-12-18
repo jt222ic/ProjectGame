@@ -11,13 +11,9 @@ namespace FPS.View
     class ExplosionOnClick
     {
         public List<TheOneWhoControl> explosionsView = new List<TheOneWhoControl>();
-
         ContentManager _content;
         SpriteBatch _spritebatch;
         Camera _camera;
-        
-
-
 
         public ExplosionOnClick(ContentManager content, SpriteBatch spritebatch, Camera camera)
         {

@@ -10,20 +10,26 @@ namespace FPS.Model
     class Player
     {
         public int Health = 167;
-
-       
+        public bool swap = false;
         Enemy enemy;
 
         public Player(Enemy enemy)
         {
             this.enemy = enemy;
         }
+        public void SwapWeapon()
+        {
+            if (swap == false)
+            {
+                swap = true;
+            }
+            else if (swap == true)
+            {
+                swap = false;
+           }
+            
+        }
         
-
-      
-
-
-        
-
     }
 }
+

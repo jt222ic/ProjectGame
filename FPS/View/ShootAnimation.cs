@@ -43,14 +43,7 @@ namespace FPS.View
             float scale = camera.ScaleObject(Shoot.Width / numberFrameX, Shoot.Height / numberFrameY);// skalar TExture2d width and height dela med numbersof frames
             spritebatch.Draw(Shoot, new Vector2(700, 350), test, transition);
             spritebatch.End();
-
         }
-
-        public bool Reload()
-        {
-            return true;
-        }
-
         public void Update(float Elapsedtime)
         {
 

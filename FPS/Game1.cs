@@ -15,6 +15,7 @@ namespace FPS
     /// </summary>
     public class Game1 : Game
     {
+        //Mostly for viewclass//
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         MouseState prevMouse;
@@ -28,9 +29,10 @@ namespace FPS
         ReLoadAnimation reload;
         EnemyView enemyView;
         TheOneWhoControl BoomEffect;
-        int damage = 1;
+        float damage = 1;
         ExplosionOnClick ClickExplosion;
         Transition trans;
+        // Controller check ammo//
         int maxammo = 7;
         int  ammo = 7;
         int clip = 0;
@@ -41,25 +43,27 @@ namespace FPS
         SoundEffect reloadSound;
         SoundEffect DryGun;
         SoundEffectInstance soundEffect;
+        SoundEffectInstance ShotgunEffect;
         Song Berserk;
         Song Castle;
-
+        SoundEffect ShotLoud;
+       //Model//
         Enemy enemies;
         Player players;
-        HealthBar playerHealth;
         Random random = new Random();
         WhackAMole EnemySimulation;
-
-
+        //keyboard//
+        KeyboardState Keyboardnow;
+        KeyboardState currentKeyboard;
 
        
-        //Health//
+        //Health -Weapon regen//
 
         WeaponBar heal;
-
-
-        //Pause//
-
+        HealthBar playerHealth;
+        
+        Texture2D Shotgun;
+        ShotgunShootAnimation ShotgunAnimation;
    
 
         enum GameState
@@ -108,8 +112,11 @@ namespace FPS
             camera.ScaleEverything(graphics.PreferredBackBufferHeight, graphics.PreferredBackBufferWidth);
             Aim = Content.Load<Texture2D>("BetterDoom.png");
             animation = new ShootAnimation(Aim);
-           
-            
+
+            Shotgun = Content.Load<Texture2D>("onehand.png");
+         ShotgunAnimation = new ShotgunShootAnimation(Shotgun);
+
+
             BoomEffect = new TheOneWhoControl(Content, spriteBatch, camera);
             ClickExplosion = new ExplosionOnClick(Content, spriteBatch, camera);
             ReLoad = Content.Load<Texture2D>("Badass.png");
@@ -124,32 +131,29 @@ namespace FPS
             Berserk = Content.Load<Song>("gatsu");
             Castle = Content.Load<Song>("castle");
 
-
-
-
-
-
             //sound//
+            ShotLoud = Content.Load<SoundEffect>("oldschool");
             reloadSound = Content.Load<SoundEffect>("reloading");
             GunSound = Content.Load<SoundEffect>("firesound");
             soundEffect = reloadSound.CreateInstance();
+            ShotgunEffect = ShotLoud.CreateInstance();
             DryGun = Content.Load<SoundEffect>("DryGun");
 
             heal = new WeaponBar(Content);
-           
 
+            
             //MediaPlayer.Play(Berserk);
 
             switch (currentgameState)
             {
                 case GameState.MainMenu:
                     MediaPlayer.Stop();
-                    MediaPlayer.Play(Berserk);
+                    MediaPlayer.Play(Castle);
+                    //  MediaPlayer.Play(Berserk);
                     break;
                 case GameState.Play:
                     MediaPlayer.Stop();
                     MediaPlayer.Play(Castle);
-                   
                     break;
             }
 
@@ -175,80 +179,99 @@ namespace FPS
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+
             
 
-            // enemies.EnemyHurtsPlayer();
+            //switch (currentgameState)
+            //{
 
-            switch (currentgameState)
-            {
-
-                case GameState.MainMenu:
-                    Console.Write("MainMenu");
+            //    case GameState.MainMenu:
+            //      //  Console.Write("MainMenu");
                     
-                    break;
-                case GameState.Play:
+            //        break;
+            //    case GameState.Play:
 
-                    break;
+            //        break;
 
-                case GameState.Quit:
-                    Exit();
-                    break;
+            //    case GameState.Quit:
+            //        Exit();
+            //        break;
 
-            }
-
-
+            //}
             // Console.WriteLine(players.Health);
             //Console.WriteLine("{0}", mousestate.LeftButton);
-            EnemySimulation.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
+            
             playerHealth.Update();
             mousestate = Mouse.GetState();
             MousePosition = camera.getLogicalCord(mousestate.X, mousestate.Y);
+           Keyboardnow= Keyboard.GetState();
+            if(Keyboardnow.IsKeyDown(Keys.R) && currentKeyboard.IsKeyUp(Keys.R))
+            {
+                players.SwapWeapon();
+            }
 
-            if (mousestate.LeftButton == ButtonState.Pressed && ammo >= clip && prevMouse.LeftButton == ButtonState.Released)
+            if (!players.swap)
             {
-                animation.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
-                heal.Update();
-                GunSound.Play();
-                EnemySimulation.setEnemyDead(MousePosition.X, MousePosition.Y, cross.CrossHairsize/2);
-
-                damage += 1;
-                ammo -= 1;
-                frameControl = 0;
-                
-                ClickExplosion.CreateExplosion();
-                reload.fade = 1;
-                animation.fade = 0;
-            }
-            else if (prevMouse.LeftButton == ButtonState.Released && prevMouse.LeftButton == ButtonState.Released)
-            {
-                animation.timeElapsed = 0;
-                animation.frame = 0;
-            }
-            if (mousestate.LeftButton == ButtonState.Pressed && ammo <= clip  && prevMouse.LeftButton == ButtonState.Released)
-            {
-                DryGun.Play();
-            }
-            if (mousestate.RightButton == ButtonState.Pressed && ammo<=maxammo)
-            {
-               
-                soundEffect.Play();
-                soundEffect.IsLooped = false;
-                heal.UpdateReLoad();
-                if (frameControl >= 29)
+                if (mousestate.LeftButton == ButtonState.Pressed && ammo >= clip && prevMouse.LeftButton == ButtonState.Released)
                 {
-                    ammo += (int)reloadclip;
-                    reload.fade = 0;
-                    animation.fade = 1;
+                    heal.Update();
+                    GunSound.Play();
+                    damage = 1;
+                    animation.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
+                    frameControl = 0;
+                    ammo -= 1;
+                    ClickExplosion.CreateExplosion();
+                    EnemySimulation.setEnemyDead(MousePosition.X, MousePosition.Y, damage);
+                    reload.fade = 1;
+                    animation.fade = 0;
                 }
-                else if (frameControl < 30)
-                { 
+                else if (prevMouse.LeftButton == ButtonState.Released && prevMouse.LeftButton == ButtonState.Released)
+                {
+                    animation.timeElapsed = 0;
+                    animation.frame = 0;
+                }
+                if (mousestate.LeftButton == ButtonState.Pressed && ammo <= clip && prevMouse.LeftButton == ButtonState.Released)
+                {
+                    DryGun.Play();
+                }
+                if (mousestate.RightButton == ButtonState.Pressed && ammo <= maxammo)
+                {
+
+                    soundEffect.Play();
+                    soundEffect.IsLooped = false;
+                    heal.UpdateReLoad();
+                    if (frameControl >= 29)
+                    {
+                        ammo += (int)reloadclip;
+                        reload.fade = 0;
+                        animation.fade = 1;
+                    }
+                    else if (frameControl < 30)
+                    {
+                        frameControl++;
+                    }
+                }
+            }
+            else
+            {
+                if (mousestate.LeftButton == ButtonState.Pressed && ammo >= clip)
+                {
+                    
+                    ShotgunAnimation.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
+                    if (frameControl >= 74)
+                    {
+                        ShotLoud.Play();
+                        EnemySimulation.setEnemyDead(MousePosition.X, MousePosition.Y, damage);
+                        frameControl = 0;
+                    }
                     frameControl++;
+                    damage = 4;
                 }
             }
 
-
+            EnemySimulation.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
+            currentKeyboard = Keyboardnow;
             prevMouse = mousestate;
-            // MousePosition = camera.getLogicalCord(mousestate.X, mousestate.Y);
             ClickExplosion.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
             cross.Update(MousePosition);
             trans.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
@@ -265,28 +288,34 @@ namespace FPS
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
 
-            switch(currentgameState)
-            {
-                case GameState.MainMenu:
+            //switch(currentgameState)
+            //{
+            //    case GameState.MainMenu:
 
-                    break;
+            //        break;
 
-                    case GameState.Play:
-                    break;
-
-               
-
-            }
-
+            //        case GameState.Play:
+            //        break;
             
+            //}
             enemyView.Draw();
-            cross.Draw();
-            animation.Draw(spriteBatch, camera);
-            ClickExplosion.Draw();
-            trans.Draw(spriteBatch,camera);
-            heal.Draw(spriteBatch);
 
-            playerHealth.Draw(spriteBatch);
+            if (!players.swap)
+            {
+                cross.Draw();
+                animation.Draw(spriteBatch, camera);
+                ClickExplosion.Draw();
+                trans.Draw(spriteBatch, camera);
+                heal.Draw(spriteBatch);
+                playerHealth.Draw(spriteBatch);
+            }
+            else
+            {
+                cross.Draw();
+                heal.Draw(spriteBatch);
+                playerHealth.Draw(spriteBatch);
+                ShotgunAnimation.Draw(spriteBatch, camera);
+            }
 
             base.Draw(gameTime);
         }

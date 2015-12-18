@@ -66,6 +66,7 @@
     <Compile Include="View\EnemyView.cs" />
     <Compile Include="View\ExplosionOnClick.cs" />
     <Compile Include="View\HealthBar.cs" />
+    <Compile Include="View\ShotgunShootAnimation.cs" />
     <Compile Include="View\WeaponBar.cs" />
     <Compile Include="View\ReLoadAnimation.cs" />
     <Compile Include="View\ShootAnimation.cs" />
@@ -114,7 +115,13 @@
     <Content Include="Content\Kaka.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\onehand.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\PlayerHealth.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\twohand.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\YellowGuage.png">

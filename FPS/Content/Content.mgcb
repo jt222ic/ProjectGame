@@ -43,3 +43,15 @@
 /processorParam:Quality=Best
 /build:castle.mp3
 
+#begin shotgun1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:shotgun1.wav
+
+#begin oldschool.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:oldschool.wav
+

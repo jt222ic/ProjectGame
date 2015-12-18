@@ -61,13 +61,11 @@ namespace FPS.View
         public float ScaleObject(float size, float width)
         {
             return scale* size/width;
-
         }
 
         public float ScaleBall(float radius, float width)
         {
             return sizeOfftheField * 2 * radius / (float)width;
-
         }
 
         public Vector2 CenterMousePosition(Texture2D texture, float width, Vector2 Mouse)

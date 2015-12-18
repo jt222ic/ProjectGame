@@ -44,3 +44,7 @@ C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Con
 C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Content\gatsu.xnb
 C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Content\castle.wma
 C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Content\castle.xnb
+C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Content\onehand.png
+C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Content\twohand.png
+C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Content\shotgun1.xnb
+C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Content\oldschool.xnb

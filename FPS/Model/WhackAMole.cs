@@ -11,24 +11,14 @@ namespace FPS.Model
     {
 
         private List<Enemy> enemyspawn = new List<Enemy>();
-
-        //int MaxenemySpawn = 10;
         Player player;
         float spawn = 0;
-        
         Random rand = new Random();
 
         public WhackAMole(Player player)
         {
             this.player = player;
-
-            //for (int i = 0; i < MaxenemySpawn; i++)
-            //{
-            //    enemyspawn.Add(new Enemy(player, rand));
-            //}
-
         }
-
         public void TestSpawning()
         {
             if (spawn >= 2)
@@ -40,10 +30,6 @@ namespace FPS.Model
                     enemyspawn.Add(new Enemy(player, rand));
                 }
             }
-            //for (int i = 0; i < MaxenemySpawn; i++)
-            //{
-            //    enemyspawn.Add(new Enemy(player, rand));
-            //}
         }
 
         public List<Enemy> GetPosition()
@@ -62,32 +48,23 @@ namespace FPS.Model
             {
                 enemies.Move(seconds);
                 enemies.EnemyHurtsPlayer();
-
-
             }
         }
-        public void setEnemyDead(float coordX, float coordY, float crosshairSize)
+        public void setEnemyDead(float coordX, float coordY, float damage)
         {
-            // tar in crosshairen senare//
-            // lade in crosshair storleken för att täcka fungerar fortfarande inte//
             foreach (Enemy enemies in enemyspawn)
             {
                Vector2 MonsterlogicMouse = new Vector2(coordX, coordY);
 
                bool containCoord = enemies.GetAllSize.Contains(MonsterlogicMouse.X , MonsterlogicMouse.Y);
-
                 //Rectangle penetrate = new Rectangle((int)MonsterlogicMouse.X,(int) MonsterlogicMouse.Y, 1, 1);
-
                 //Console.Write(containCoord);
                 //if (enemies.GetAllSize.Intersects(penetrate))
-                
-
                 if (containCoord)
                     {
-                        Console.Write("it got hit");
-                        enemies.Dead = true;
+                    enemies.enemyHealth -= damage;
                     }
-                Console.Write("Miss");
+               
             }
             
 

@@ -21,9 +21,8 @@ namespace FPS.View
 
         public void Update(Vector2 MousePosition)
         {
-
             spritePosition= new Vector2(MousePosition.X, MousePosition.Y);
-            
+          
         }
         public CrossHair(ContentManager Content, SpriteBatch spritebatch, Camera camera)
         {
@@ -37,7 +36,6 @@ namespace FPS.View
 
             float scale = camera.ScaleObject(crosshairSize, CrossAim.Width);
             this.spritebatch.Begin();
-
             this.spritebatch.Draw(CrossAim, camera.CenterMousePosition(CrossAim, CrossAim.Width/2, spritePosition), Color.White);
             this.spritebatch.End();
         }
