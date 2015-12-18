@@ -72,17 +72,23 @@ namespace FPS.Model
             // lade in crosshair storleken för att täcka fungerar fortfarande inte//
             foreach (Enemy enemies in enemyspawn)
             {
-                Vector2 MonsterlogicMouse = new Vector2(coordX, coordY);
+               Vector2 MonsterlogicMouse = new Vector2(coordX, coordY);
 
-                bool containCoord = enemies.GetAllSize.Contains(MonsterlogicMouse.X , MonsterlogicMouse.Y);
-                Console.Write(containCoord);
+               bool containCoord = enemies.GetAllSize.Contains(MonsterlogicMouse.X , MonsterlogicMouse.Y);
+
+                //Rectangle penetrate = new Rectangle((int)MonsterlogicMouse.X,(int) MonsterlogicMouse.Y, 1, 1);
+
+                //Console.Write(containCoord);
+                //if (enemies.GetAllSize.Intersects(penetrate))
+                
 
                 if (containCoord)
                     {
                         Console.Write("it got hit");
                         enemies.Dead = true;
                     }
-                }
+                Console.Write("Miss");
+            }
             
 
 

@@ -41,20 +41,34 @@ namespace FPS
         SoundEffect reloadSound;
         SoundEffect DryGun;
         SoundEffectInstance soundEffect;
+        Song Berserk;
+        Song Castle;
+
         Enemy enemies;
         Player players;
         HealthBar playerHealth;
         Random random = new Random();
         WhackAMole EnemySimulation;
-        
-        Texture2D pauseTexture;
-        Rectangle pauserectangle;
 
+
+
+       
         //Health//
 
         WeaponBar heal;
-        
 
+
+        //Pause//
+
+   
+
+        enum GameState
+        {
+            MainMenu,
+            Play,
+            Quit
+        }
+        GameState currentgameState = GameState.MainMenu;
 
         public Game1()
         {
@@ -63,7 +77,9 @@ namespace FPS
            // graphics.PreferredBackBufferHeight = 640;
             //graphics.PreferredBackBufferWidth = 600;
             //graphics.ApplyChanges();
-        }
+
+         
+    }
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -105,13 +121,13 @@ namespace FPS
             playerHealth = new HealthBar(Content, players, enemies);
             EnemySimulation = new WhackAMole(players);
             enemyView = new EnemyView(Content, spriteBatch, camera, EnemySimulation);
-            //song = Content.Load<Song>("neyo");
+            Berserk = Content.Load<Song>("gatsu");
+            Castle = Content.Load<Song>("castle");
 
-            //MediaPlayer.Play(song);
 
 
-            pauseTexture = Content.Load<Texture2D>("background.jpeg");
-            pauserectangle = new Rectangle(0, 0, pauseTexture.Width, pauseTexture.Height);
+
+
 
             //sound//
             reloadSound = Content.Load<SoundEffect>("reloading");
@@ -120,9 +136,22 @@ namespace FPS
             DryGun = Content.Load<SoundEffect>("DryGun");
 
             heal = new WeaponBar(Content);
+           
 
+            //MediaPlayer.Play(Berserk);
 
-
+            switch (currentgameState)
+            {
+                case GameState.MainMenu:
+                    MediaPlayer.Stop();
+                    MediaPlayer.Play(Berserk);
+                    break;
+                case GameState.Play:
+                    MediaPlayer.Stop();
+                    MediaPlayer.Play(Castle);
+                   
+                    break;
+            }
 
             // TODO: use this.Content to load your game content here
         }
@@ -146,22 +175,40 @@ namespace FPS
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
+            
 
-            EnemySimulation.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
             // enemies.EnemyHurtsPlayer();
-            playerHealth.Update();
+
+            switch (currentgameState)
+            {
+
+                case GameState.MainMenu:
+                    Console.Write("MainMenu");
+                    
+                    break;
+                case GameState.Play:
+
+                    break;
+
+                case GameState.Quit:
+                    Exit();
+                    break;
+
+            }
+
 
             // Console.WriteLine(players.Health);
             //Console.WriteLine("{0}", mousestate.LeftButton);
+            EnemySimulation.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
+            playerHealth.Update();
             mousestate = Mouse.GetState();
+            MousePosition = camera.getLogicalCord(mousestate.X, mousestate.Y);
 
             if (mousestate.LeftButton == ButtonState.Pressed && ammo >= clip && prevMouse.LeftButton == ButtonState.Released)
             {
                 animation.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
                 heal.Update();
-                
                 GunSound.Play();
-
                 EnemySimulation.setEnemyDead(MousePosition.X, MousePosition.Y, cross.CrossHairsize/2);
 
                 damage += 1;
@@ -172,16 +219,11 @@ namespace FPS
                 reload.fade = 1;
                 animation.fade = 0;
             }
-            
-
             else if (prevMouse.LeftButton == ButtonState.Released && prevMouse.LeftButton == ButtonState.Released)
             {
                 animation.timeElapsed = 0;
                 animation.frame = 0;
-
             }
-            prevMouse = mousestate;
-
             if (mousestate.LeftButton == ButtonState.Pressed && ammo <= clip  && prevMouse.LeftButton == ButtonState.Released)
             {
                 DryGun.Play();
@@ -194,11 +236,9 @@ namespace FPS
                 heal.UpdateReLoad();
                 if (frameControl >= 29)
                 {
-                    
                     ammo += (int)reloadclip;
                     reload.fade = 0;
                     animation.fade = 1;
-
                 }
                 else if (frameControl < 30)
                 { 
@@ -206,9 +246,9 @@ namespace FPS
                 }
             }
 
-           
-           
-            MousePosition = camera.getLogicalCord(mousestate.X, mousestate.Y);
+
+            prevMouse = mousestate;
+            // MousePosition = camera.getLogicalCord(mousestate.X, mousestate.Y);
             ClickExplosion.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
             cross.Update(MousePosition);
             trans.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
@@ -224,6 +264,19 @@ namespace FPS
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+
+            switch(currentgameState)
+            {
+                case GameState.MainMenu:
+
+                    break;
+
+                    case GameState.Play:
+                    break;
+
+               
+
+            }
 
             
             enemyView.Draw();

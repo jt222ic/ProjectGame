@@ -3,7 +3,7 @@
   <SourceFile>C:/Users/jan/Documents/Visual Studio 2015/Projects/FPS/FPS/Content/DryGun.wav</SourceFile>
   <SourceTime>2015-12-15T20:41:36.1711368+01:00</SourceTime>
   <DestFile>C:/Users/jan/Documents/Visual Studio 2015/Projects/FPS/FPS/Content/bin/Windows/DryGun.xnb</DestFile>
-  <DestTime>2015-12-15T20:43:05.9235125+01:00</DestTime>
+  <DestTime>2015-12-18T16:10:13.0082534+01:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2015-04-29T19:14:44+02:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

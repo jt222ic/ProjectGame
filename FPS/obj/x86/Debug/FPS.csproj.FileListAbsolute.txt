@@ -40,3 +40,7 @@ C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Con
 C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Content\YellowGuage.png
 C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Content\Kaka.png
 C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Content\Jcross.png
+C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Content\gatsu.wma
+C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Content\gatsu.xnb
+C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Content\castle.wma
+C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Content\castle.xnb

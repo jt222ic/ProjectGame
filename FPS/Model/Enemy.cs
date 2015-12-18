@@ -17,10 +17,12 @@ namespace FPS.Model
         private int enemyHealth = 10;
         Player player;
         private Vector2 position = new Vector2(0.5f,100);
-        private float Monstersize = 0.4f;
+        private float Monstersize = 100;
         private Vector2 enemymovement = new Vector2(0.5f, 0.5f);
         private Vector2 RandomPosition;
-        Rectangle destiny = new Rectangle((int)10, (int)10, 60, 60);
+        Rectangle destiny;
+
+      
 
         public Enemy(Player player, Random rand)
         {
@@ -31,14 +33,14 @@ namespace FPS.Model
             RandomPosition.Normalize();
             RandomPosition = RandomPosition * ((float)rand.NextDouble() + 200);
             enemymovement = RandomPosition;
-
+            destiny = new Rectangle((int)position.X, (int)position.Y, (int)Monstersize, (int)Monstersize);
         }
 
         public void EnemyHurtsPlayer()
         {
             if (enemyHealth == 0)
             {
-                
+                Dead = true;   
             }
             else if (waittime > 0 && enemyHealth > 0)
             {

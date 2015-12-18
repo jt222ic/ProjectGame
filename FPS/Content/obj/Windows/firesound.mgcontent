@@ -3,7 +3,7 @@
   <SourceFile>C:/Users/jan/Documents/Visual Studio 2015/Projects/FPS/FPS/Content/firesound.wav</SourceFile>
   <SourceTime>2015-12-08T19:02:20.925615+01:00</SourceTime>
   <DestFile>C:/Users/jan/Documents/Visual Studio 2015/Projects/FPS/FPS/Content/bin/Windows/firesound.xnb</DestFile>
-  <DestTime>2015-12-15T20:43:05.7754199+01:00</DestTime>
+  <DestTime>2015-12-18T16:10:12.8641658+01:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2015-04-29T19:14:44+02:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>
