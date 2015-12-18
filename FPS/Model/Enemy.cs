@@ -9,24 +9,28 @@ namespace FPS.Model
 {
     class Enemy
     {
-
         public float currentHealth = 7000;
-
-        public float EnemyRadius = 0.5f;
         private float waittime = 40;
         private float cooldown = 1;
         public bool Dead = false;
         public int shootdamage = 4;
         private int enemyHealth = 10;
         Player player;
-        private Vector2 position;
-        private Vector2 Monstersize;
-
+        private Vector2 position = new Vector2(0.5f,100);
+        private float Monstersize = 0.4f;
+        private Vector2 enemymovement = new Vector2(0.5f, 0.5f);
+        private Vector2 RandomPosition;
+        Rectangle destiny = new Rectangle((int)10, (int)10, 60, 60);
 
         public Enemy(Player player, Random rand)
         {
             
             this.player = player;
+
+           RandomPosition = new Vector2(position.X *40, (float)rand.NextDouble() );
+            RandomPosition.Normalize();
+            RandomPosition = RandomPosition * ((float)rand.NextDouble() + 200);
+            enemymovement = RandomPosition;
 
         }
 
@@ -47,45 +51,25 @@ namespace FPS.Model
                 player.Health -= shootdamage;
                 waittime += 40;
             }
-            if (player.Health == 0)
-            {
-               
-            }
         }
 
+        public void Move(float time)
+        {
+            position += enemymovement * time;
+            
+        }
         public bool alive()
         {
-
             return Dead;
         }
-
-        public void inflictDamage(float Damage, Vector2 MousePosition, float cross)
-        {
-
-            if (position.X + EnemyRadius >= MousePosition.X - cross &&
-                position.X - EnemyRadius <= MousePosition.X + cross &&
-                position.Y + EnemyRadius <= MousePosition.Y - cross &&
-                position.Y - EnemyRadius >= MousePosition.Y + cross)
-            {
-
-            }
-            if (enemyHealth <= 0)
-            {
-                Console.WriteLine("enemy Slain!");
-            }
-        }
-        public Vector2 GetPosition
+        public Vector2 Pose
         {
             get
             {
                 return position;
             }
-            set
-            {
-                position = value;
-            }
         }
-        public Vector2 GetSize
+        public float GetSize
         {
             get
             {
@@ -94,6 +78,13 @@ namespace FPS.Model
             set
             {
                 Monstersize = value;
+            }
+        }
+        public Rectangle GetAllSize
+        {
+            get
+            {
+                return destiny;
             }
         }
     }

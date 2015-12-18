@@ -1,2 +1,1 @@
 C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\x64\Debug\FPS.exe.config
-C:\Users\jan\Desktop\project\FPS\bin\x64\Debug\FPS.exe.config

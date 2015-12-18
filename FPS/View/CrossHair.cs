@@ -27,17 +27,19 @@ namespace FPS.View
         }
         public CrossHair(ContentManager Content, SpriteBatch spritebatch, Camera camera)
         {
-            CrossAim = Content.Load<Texture2D>("crosshair.png");
+            CrossAim = Content.Load<Texture2D>("Jcross.png");
             this.camera = camera;
             this.spritebatch = spritebatch;
         }
 
         public void Draw()
         {
-            this.spritebatch.Begin();
-            this.spritebatch.Draw(CrossAim,camera.CenterMousePosition(CrossAim, crosshairSize/2, spritePosition), Color.Black);
-            this.spritebatch.End();
 
+            float scale = camera.ScaleObject(crosshairSize, CrossAim.Width);
+            this.spritebatch.Begin();
+
+            this.spritebatch.Draw(CrossAim, camera.CenterMousePosition(CrossAim, CrossAim.Width/2, spritePosition), Color.White);
+            this.spritebatch.End();
         }
 
         public float CrossHairsize

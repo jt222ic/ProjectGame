@@ -21,7 +21,6 @@ namespace FPS.View
         private float bulletspread = 0.8f;
         MouseState oldstate;
        
-
         
         Texture2D nowsprites;
 

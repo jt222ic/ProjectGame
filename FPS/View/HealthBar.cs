@@ -54,13 +54,10 @@ namespace FPS.View
         {
 
             spritebatch.Begin();
-            
             spritebatch.Draw(Health, position, Color.White);
             spritebatch.Draw(HealthGuage, redposition, new Rectangle((int)position.X, (int)position.Y, currentHealth *2, HealthGuage.Height), colour);
             spritebatch.End();
         }
-
-
         public void HealthColor()
         {
             if(currentHealth >= fullHealth * 0.75)

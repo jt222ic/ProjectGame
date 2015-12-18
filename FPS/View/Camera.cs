@@ -13,8 +13,8 @@ namespace FPS.View
         private float scaleX;
         private float scaleY;
         private float scale;
-        private float sizeOfTile = 64;
 
+        private int sizeOfftheField = 250;
 
         public void ScaleEverything(float Height, float Width)
         {
@@ -30,7 +30,6 @@ namespace FPS.View
             {
                 scale = scaleY;
             }
-             
         }
 
         public Vector2 GetVisualCoord(float LogicX, float LogicY)
@@ -59,16 +58,22 @@ namespace FPS.View
             return new Vector2(VisualX, VisualY);
         }
 
-        public float ScaleObject(float size, float height)
+        public float ScaleObject(float size, float width)
         {
-            return scale* size/height;
+            return scale* size/width;
 
-        } 
+        }
+
+        public float ScaleBall(float radius, float width)
+        {
+            return sizeOfftheField * 2 * radius / (float)width;
+
+        }
 
         public Vector2 CenterMousePosition(Texture2D texture, float width, Vector2 Mouse)
         {
 
-            return new Vector2(Mouse.X - texture.Width / 2, Mouse.Y - texture.Width / 2);
+            return new Vector2(Mouse.X - texture.Width / 2 , Mouse.Y - texture.Width / 2 );
         }
     }
 }

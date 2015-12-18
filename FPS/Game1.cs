@@ -46,8 +46,7 @@ namespace FPS
         HealthBar playerHealth;
         Random random = new Random();
         WhackAMole EnemySimulation;
-
-        bool paused = false;
+        
         Texture2D pauseTexture;
         Rectangle pauserectangle;
 
@@ -93,7 +92,7 @@ namespace FPS
             camera.ScaleEverything(graphics.PreferredBackBufferHeight, graphics.PreferredBackBufferWidth);
             Aim = Content.Load<Texture2D>("BetterDoom.png");
             animation = new ShootAnimation(Aim);
-            enemyView = new EnemyView(Content, spriteBatch, camera);
+           
             
             BoomEffect = new TheOneWhoControl(Content, spriteBatch, camera);
             ClickExplosion = new ExplosionOnClick(Content, spriteBatch, camera);
@@ -105,6 +104,7 @@ namespace FPS
             enemies = new Enemy(players, random);
             playerHealth = new HealthBar(Content, players, enemies);
             EnemySimulation = new WhackAMole(players);
+            enemyView = new EnemyView(Content, spriteBatch, camera, EnemySimulation);
             //song = Content.Load<Song>("neyo");
 
             //MediaPlayer.Play(song);
@@ -145,26 +145,29 @@ namespace FPS
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            EnemySimulation.Update();
+
+
+            EnemySimulation.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
             // enemies.EnemyHurtsPlayer();
             playerHealth.Update();
 
             // Console.WriteLine(players.Health);
-            Console.WriteLine("{0}", mousestate.LeftButton);
-            
+            //Console.WriteLine("{0}", mousestate.LeftButton);
+            mousestate = Mouse.GetState();
 
             if (mousestate.LeftButton == ButtonState.Pressed && ammo >= clip && prevMouse.LeftButton == ButtonState.Released)
             {
+                animation.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
                 heal.Update();
                 
                 GunSound.Play();
-                
-                animation.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
+
+                EnemySimulation.setEnemyDead(MousePosition.X, MousePosition.Y, cross.CrossHairsize/2);
 
                 damage += 1;
                 ammo -= 1;
                 frameControl = 0;
-                enemies.inflictDamage(damage, MousePosition, cross.CrossHairsize);
+                
                 ClickExplosion.CreateExplosion();
                 reload.fade = 1;
                 animation.fade = 0;
@@ -177,11 +180,11 @@ namespace FPS
                 animation.frame = 0;
 
             }
+            prevMouse = mousestate;
+
             if (mousestate.LeftButton == ButtonState.Pressed && ammo <= clip  && prevMouse.LeftButton == ButtonState.Released)
             {
                 DryGun.Play();
-                Console.WriteLine("hello");
-                
             }
             if (mousestate.RightButton == ButtonState.Pressed && ammo<=maxammo)
             {
@@ -201,17 +204,13 @@ namespace FPS
                 { 
                     frameControl++;
                 }
-               
             }
 
-            prevMouse = mousestate;
-            mousestate = Mouse.GetState();
-            ClickExplosion.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
-
-
+           
+           
             MousePosition = camera.getLogicalCord(mousestate.X, mousestate.Y);
+            ClickExplosion.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
             cross.Update(MousePosition);
-
             trans.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
             trans.transition();
             base.Update(gameTime);
@@ -226,12 +225,7 @@ namespace FPS
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
 
-            spriteBatch.Begin();
-            if (paused)
-            {
-                spriteBatch.Draw(pauseTexture, pauserectangle, Color.White);
-            }
-            spriteBatch.End();
+            
             enemyView.Draw();
             cross.Draw();
             animation.Draw(spriteBatch, camera);
