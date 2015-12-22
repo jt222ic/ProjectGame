@@ -63,6 +63,7 @@ namespace FPS.Model
                 if (containCoord)
                     {
                     enemies.enemyHealth -= damage;
+                    Console.WriteLine("{0}", enemies.enemyHealth);
                     }
                
             }

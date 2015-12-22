@@ -35,10 +35,10 @@ namespace FPS.Model
 
         public void EnemyHurtsPlayer()
         {
-            if (enemyHealth ==0)
+            if (enemyHealth <=0)
             {
                 Dead = true;
-                Console.WriteLine("enemy dead");
+                //Console.WriteLine("enemy dead");
             }
             else if (waittime > 0 && enemyHealth > Deadcondition)
             {

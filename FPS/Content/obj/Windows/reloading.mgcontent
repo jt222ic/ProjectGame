@@ -3,7 +3,7 @@
   <SourceFile>C:/Users/jan/Documents/Visual Studio 2015/Projects/FPS/FPS/Content/reloading.wav</SourceFile>
   <SourceTime>2015-12-15T18:17:44.0188819+01:00</SourceTime>
   <DestFile>C:/Users/jan/Documents/Visual Studio 2015/Projects/FPS/FPS/Content/bin/Windows/reloading.xnb</DestFile>
-  <DestTime>2015-12-18T16:10:12.9412157+01:00</DestTime>
+  <DestTime>2015-12-19T02:10:45.8442333+01:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2015-04-29T19:14:44+02:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

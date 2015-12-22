@@ -28,7 +28,6 @@ C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Con
 C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Content\DOOM.png
 C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Content\Badass.png
 C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\obj\x86\Debug\FPS.csprojResolveAssemblyReference.cache
-C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Content\background.jpeg
 C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\FPS.exe.config
 C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Content\firesound.wav
 C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Content\firesound.xnb
@@ -39,7 +38,6 @@ C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Con
 C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Content\PlayerHealth.png
 C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Content\YellowGuage.png
 C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Content\Kaka.png
-C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Content\Jcross.png
 C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Content\gatsu.wma
 C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Content\gatsu.xnb
 C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Content\castle.wma
@@ -48,3 +46,6 @@ C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Con
 C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Content\twohand.png
 C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Content\shotgun1.xnb
 C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Content\oldschool.xnb
+C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Content\Mp5.xnb
+C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Content\MainMenu.jpg
+C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Content\play.png

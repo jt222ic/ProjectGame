@@ -16,8 +16,8 @@ namespace FPS.View
         Vector2 position;
         Vector2 redposition;
         private int fullHealth;
-        private int currentHealth;
-        private int rateOfchange = 40;
+        private float currentHealth;
+        private float rateOfchange = 40;
         private int rateOfRegen = 11;
         public WeaponBar(ContentManager Content)
         {
@@ -30,11 +30,11 @@ namespace FPS.View
 
         }
 
-        public void Update()
+        public void Update(float decrease)
         {
             if(currentHealth>=0)
             {
-                currentHealth -= rateOfchange;
+                currentHealth -= rateOfchange * decrease;
             }
 
         }
@@ -51,7 +51,7 @@ namespace FPS.View
 
             spritebatch.Begin();
             spritebatch.Draw(Health, position, Color.White);
-            spritebatch.Draw(HealthGuage, redposition, new Rectangle((int)position.X,(int)position.Y,currentHealth,HealthGuage.Height),Color.White);
+            spritebatch.Draw(HealthGuage, redposition, new Rectangle((int)position.X,(int)position.Y,(int)currentHealth,HealthGuage.Height),Color.White);
             spritebatch.End();
         }
     }

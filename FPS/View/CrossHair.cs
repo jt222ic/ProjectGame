@@ -26,7 +26,7 @@ namespace FPS.View
         }
         public CrossHair(ContentManager Content, SpriteBatch spritebatch, Camera camera)
         {
-            CrossAim = Content.Load<Texture2D>("Jcross.png");
+            CrossAim = Content.Load<Texture2D>("crosshair.png");
             this.camera = camera;
             this.spritebatch = spritebatch;
         }

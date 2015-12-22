@@ -57,7 +57,7 @@
     <Compile Include="Game1.cs" />
     <Compile Include="Model\Enemy.cs" />
     <Compile Include="Model\Player.cs" />
-    <Compile Include="Model\Transition.cs" />
+    <Compile Include="View\Transition.cs" />
     <Compile Include="Model\WhackAMole.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -66,6 +66,8 @@
     <Compile Include="View\EnemyView.cs" />
     <Compile Include="View\ExplosionOnClick.cs" />
     <Compile Include="View\HealthBar.cs" />
+    <Compile Include="View\MachinegunAnimation.cs" />
+    <Compile Include="View\MainMenu.cs" />
     <Compile Include="View\ShotgunShootAnimation.cs" />
     <Compile Include="View\WeaponBar.cs" />
     <Compile Include="View\ReLoadAnimation.cs" />
@@ -83,9 +85,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\AssHole.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\background.jpeg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Badass.png">
@@ -109,13 +108,16 @@
     <Content Include="Content\HealthGuage.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Jcross.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Content\Kaka.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\MainMenu.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\onehand.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\play.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\PlayerHealth.png">

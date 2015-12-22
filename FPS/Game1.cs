@@ -32,12 +32,15 @@ namespace FPS
         float damage = 1;
         ExplosionOnClick ClickExplosion;
         Transition trans;
-        // Controller check ammo//
+        // Controller check ammo//  maybe put on Player Class, which i made them to public global variable or get set return statement function
         int maxammo = 7;
-        int  ammo = 7;
+        float  ammo = 7;
         int clip = 0;
         float reloadclip = 2f;
         int frameControl = 0;
+        int ticktock;
+        bool secretweapon = false;
+        float decrease;
         //sound//
         SoundEffect GunSound;
         SoundEffect reloadSound;
@@ -47,6 +50,7 @@ namespace FPS
         Song Berserk;
         Song Castle;
         SoundEffect ShotLoud;
+        SoundEffect MachineLoud;
        //Model//
         Enemy enemies;
         Player players;
@@ -55,22 +59,29 @@ namespace FPS
         //keyboard//
         KeyboardState Keyboardnow;
         KeyboardState currentKeyboard;
-
        
         //Health -Weapon regen//
-
         WeaponBar heal;
         HealthBar playerHealth;
-        
+        //animation work
         Texture2D Shotgun;
         ShotgunShootAnimation ShotgunAnimation;
-   
+        Texture2D Machinegun;
+        MachinegunAnimation machinegunAnimation;
+        // playonce//  Maybe to player class;
+        bool playonce = false;
 
+
+        //Main Menu//
+
+        MainMenu mainMenu;
+        Viewport graphicss;
+        bool pause;
         enum GameState
         {
             MainMenu,
-            Play,
-            Quit
+            PlayGame
+           
         }
         GameState currentgameState = GameState.MainMenu;
 
@@ -81,8 +92,6 @@ namespace FPS
            // graphics.PreferredBackBufferHeight = 640;
             //graphics.PreferredBackBufferWidth = 600;
             //graphics.ApplyChanges();
-
-         
     }
 
         /// <summary>
@@ -104,7 +113,7 @@ namespace FPS
         /// </summary>
         protected override void LoadContent()
         {
-           
+            graphicss = new Viewport();
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             camera = new Camera();
@@ -112,17 +121,15 @@ namespace FPS
             camera.ScaleEverything(graphics.PreferredBackBufferHeight, graphics.PreferredBackBufferWidth);
             Aim = Content.Load<Texture2D>("BetterDoom.png");
             animation = new ShootAnimation(Aim);
-
             Shotgun = Content.Load<Texture2D>("onehand.png");
-         ShotgunAnimation = new ShotgunShootAnimation(Shotgun);
-
-
+            ShotgunAnimation = new ShotgunShootAnimation(Shotgun);
+            Machinegun = Content.Load < Texture2D>("twohand.png");
+            machinegunAnimation = new MachinegunAnimation(Machinegun);
             BoomEffect = new TheOneWhoControl(Content, spriteBatch, camera);
             ClickExplosion = new ExplosionOnClick(Content, spriteBatch, camera);
             ReLoad = Content.Load<Texture2D>("Badass.png");
             reload = new ReLoadAnimation(ReLoad);
             trans = new Transition(animation, reload);
-            
             players = new Player(enemies);
             enemies = new Enemy(players, random);
             playerHealth = new HealthBar(Content, players, enemies);
@@ -130,7 +137,6 @@ namespace FPS
             enemyView = new EnemyView(Content, spriteBatch, camera, EnemySimulation);
             Berserk = Content.Load<Song>("gatsu");
             Castle = Content.Load<Song>("castle");
-
             //sound//
             ShotLoud = Content.Load<SoundEffect>("oldschool");
             reloadSound = Content.Load<SoundEffect>("reloading");
@@ -138,24 +144,13 @@ namespace FPS
             soundEffect = reloadSound.CreateInstance();
             ShotgunEffect = ShotLoud.CreateInstance();
             DryGun = Content.Load<SoundEffect>("DryGun");
-
+            MachineLoud = Content.Load<SoundEffect>("Mp5");
             heal = new WeaponBar(Content);
 
-            
+
             //MediaPlayer.Play(Berserk);
 
-            switch (currentgameState)
-            {
-                case GameState.MainMenu:
-                    MediaPlayer.Stop();
-                    MediaPlayer.Play(Castle);
-                    //  MediaPlayer.Play(Berserk);
-                    break;
-                case GameState.Play:
-                    MediaPlayer.Stop();
-                    MediaPlayer.Play(Castle);
-                    break;
-            }
+            mainMenu = new MainMenu(graphicss,Content);
 
             // TODO: use this.Content to load your game content here
         }
@@ -179,42 +174,57 @@ namespace FPS
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-
             
 
-            //switch (currentgameState)
-            //{
-
-            //    case GameState.MainMenu:
-            //      //  Console.Write("MainMenu");
-                    
-            //        break;
-            //    case GameState.Play:
-
-            //        break;
-
-            //    case GameState.Quit:
-            //        Exit();
-            //        break;
-
-            //}
-            // Console.WriteLine(players.Health);
-            //Console.WriteLine("{0}", mousestate.LeftButton);
-            
-            playerHealth.Update();
-            mousestate = Mouse.GetState();
-            MousePosition = camera.getLogicalCord(mousestate.X, mousestate.Y);
-           Keyboardnow= Keyboard.GetState();
-            if(Keyboardnow.IsKeyDown(Keys.R) && currentKeyboard.IsKeyUp(Keys.R))
+            switch (currentgameState)
             {
-                players.SwapWeapon();
+                case GameState.MainMenu:
+                     mainMenu.Update();
+                    if (mainMenu.isClicked == true)
+                    {
+                        currentgameState = GameState.PlayGame;
+                    }
+                    break;
+
+
+                case GameState.PlayGame:
+
+                      Keyboardnow = Keyboard.GetState();
+                    if(Keyboardnow.IsKeyDown(Keys.Enter)&& currentKeyboard.IsKeyUp(Keys.Enter))
+                    {
+                        Console.Write("Suppose to pause or return to Main screen");
+                        pause = true;
+                        currentgameState = GameState.MainMenu;
+                    }
+
+
+                    playerHealth.Update();
+                    mousestate = Mouse.GetState();
+                    MousePosition = camera.getLogicalCord(mousestate.X, mousestate.Y);
+
+                    if (Keyboardnow.IsKeyDown(Keys.R) && currentKeyboard.IsKeyUp(Keys.R))
+            {
+                if (ticktock != 14)
+                {
+
+                    players.SwapWeapon();
+                }
+                else
+                {
+                    secretweapon = true;
+                    ticktock = 1;
+                }
+
+                ticktock++;
+                Console.WriteLine(ticktock);
             }
 
             if (!players.swap)
             {
                 if (mousestate.LeftButton == ButtonState.Pressed && ammo >= clip && prevMouse.LeftButton == ButtonState.Released)
                 {
-                    heal.Update();
+                    decrease = 1;
+                    heal.Update(decrease);
                     GunSound.Play();
                     damage = 1;
                     animation.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
@@ -252,11 +262,48 @@ namespace FPS
                     }
                 }
             }
+            else if (secretweapon)
+            {
+
+                if (mousestate.LeftButton == ButtonState.Pressed && ammo >= clip)
+                {
+
+                    if (!playonce)
+                    {
+                        MachineLoud.Play();
+                        playonce = true;
+                    }
+                    if (frameControl >= 40)
+                    {
+                        playonce = false;
+                        frameControl = 0;
+                    }
+                    maxammo = 32;
+                    decrease = 0.09f;
+                    heal.Update(decrease);
+                    Console.WriteLine(ammo);
+                    ammo -= 0.35f;
+                    frameControl++;
+                    machinegunAnimation.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
+                    EnemySimulation.setEnemyDead(MousePosition.X, MousePosition.Y, damage);
+                    damage = 0.1f;
+                }
+                if (mousestate.RightButton == ButtonState.Pressed && ammo <= maxammo)
+                {
+
+                    soundEffect.Play();
+                    soundEffect.IsLooped = false;
+                    heal.UpdateReLoad();
+
+                    ammo += 0.5f;
+                    
+                }
+            }
             else
             {
                 if (mousestate.LeftButton == ButtonState.Pressed && ammo >= clip)
                 {
-                    
+
                     ShotgunAnimation.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
                     if (frameControl >= 74)
                     {
@@ -276,6 +323,8 @@ namespace FPS
             cross.Update(MousePosition);
             trans.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
             trans.transition();
+            break;
+            }
             base.Update(gameTime);
         }
 
@@ -287,34 +336,39 @@ namespace FPS
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-
-            //switch(currentgameState)
-            //{
-            //    case GameState.MainMenu:
-
-            //        break;
-
-            //        case GameState.Play:
-            //        break;
-            
-            //}
-            enemyView.Draw();
-
-            if (!players.swap)
+            switch (currentgameState)
             {
-                cross.Draw();
-                animation.Draw(spriteBatch, camera);
-                ClickExplosion.Draw();
-                trans.Draw(spriteBatch, camera);
-                heal.Draw(spriteBatch);
-                playerHealth.Draw(spriteBatch);
-            }
-            else
-            {
-                cross.Draw();
-                heal.Draw(spriteBatch);
-                playerHealth.Draw(spriteBatch);
-                ShotgunAnimation.Draw(spriteBatch, camera);
+                case GameState.MainMenu:
+                    mainMenu.Draw(spriteBatch);
+                    break;
+
+                case GameState.PlayGame:
+                    enemyView.Draw();
+
+                    if (!players.swap)     // could send it to Player Controller
+                    {
+                        cross.Draw();
+                        animation.Draw(spriteBatch, camera);
+                        ClickExplosion.Draw();
+                        trans.Draw(spriteBatch, camera);
+                        heal.Draw(spriteBatch);
+                        playerHealth.Draw(spriteBatch);
+                    }
+                    else if (secretweapon)
+                    {
+                        cross.Draw();
+                        heal.Draw(spriteBatch);
+                        machinegunAnimation.Draw(spriteBatch, camera);
+                        playerHealth.Draw(spriteBatch);
+                    }
+                    else
+                    {
+                        cross.Draw();
+                        heal.Draw(spriteBatch);
+                        playerHealth.Draw(spriteBatch);
+                        ShotgunAnimation.Draw(spriteBatch, camera);
+                    }
+                    break;
             }
 
             base.Draw(gameTime);

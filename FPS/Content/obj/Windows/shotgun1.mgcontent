@@ -3,7 +3,7 @@
   <SourceFile>C:/Users/jan/Documents/Visual Studio 2015/Projects/FPS/FPS/Content/shotgun1.wav</SourceFile>
   <SourceTime>2015-12-18T22:51:07.8249687+01:00</SourceTime>
   <DestFile>C:/Users/jan/Documents/Visual Studio 2015/Projects/FPS/FPS/Content/bin/Windows/shotgun1.xnb</DestFile>
-  <DestTime>2015-12-18T22:55:05.6802727+01:00</DestTime>
+  <DestTime>2015-12-19T02:10:48.95848+01:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2015-04-29T19:14:44+02:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

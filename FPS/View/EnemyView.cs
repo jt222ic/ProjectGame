@@ -30,7 +30,7 @@ namespace FPS.View
             this.spritebatch.Begin();
             foreach (Enemy enemies in Enemycontent.GetPosition())
             {
-               Vector2 enemyPosition = new Vector2 (enemies.Pose.X - enemies.GetSize, enemies.Pose.Y - enemies.GetSize);
+                Vector2 enemyPosition = new Vector2(enemies.Pose.X - enemies.GetSize, enemies.Pose.Y - enemies.GetSize);
                 Vector2 enemyCenter = new Vector2(enemy.Width / 2, enemy.Height / 2);
                 Rectangle Destination = new Rectangle((int)enemies.Pose.X, (int)enemies.Pose.Y,enemies.GetAllSize.Height,enemies.GetAllSize.Width);
                 
