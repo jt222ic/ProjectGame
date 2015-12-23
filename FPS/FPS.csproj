@@ -56,7 +56,9 @@
   <ItemGroup>
     <Compile Include="Game1.cs" />
     <Compile Include="Model\Enemy.cs" />
+    <Compile Include="Model\EnemyStageRule.cs" />
     <Compile Include="Model\Player.cs" />
+    <Compile Include="View\Background.cs" />
     <Compile Include="View\Transition.cs" />
     <Compile Include="Model\WhackAMole.cs" />
     <Compile Include="Program.cs" />
@@ -87,6 +89,9 @@
     <Content Include="Content\AssHole.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\background.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Badass.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -97,6 +102,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\DOOM.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Eclipse.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\firesound.wav">

@@ -21,6 +21,7 @@ namespace FPS.Model
         private float Monstersize = 100;
         private Vector2 enemymovement = new Vector2(0.5f, 0.5f);
         private Vector2 RandomPosition;
+        private int enemyleft = 4;
         
         public Enemy(Player player, Random rand)
         {
@@ -35,11 +36,13 @@ namespace FPS.Model
 
         public void EnemyHurtsPlayer()
         {
-            if (enemyHealth <=0)
+            if (enemyHealth ==0)
             {
-                Dead = true;
-                //Console.WriteLine("enemy dead");
+               // Dead = true;
+                enemymovement *= 0;
+                Console.WriteLine("sluta dö flera gånger");
             }
+           
             else if (waittime > 0 && enemyHealth > Deadcondition)
             {
                 waittime -= cooldown;

@@ -9,11 +9,12 @@ namespace FPS.Model
 {
     class WhackAMole
     {
-
         private List<Enemy> enemyspawn = new List<Enemy>();
         Player player;
         float spawn = 0;
+        float spawncount = 4;
         Random rand = new Random();
+        public bool allMonsterdead;
 
         public WhackAMole(Player player)
         {
@@ -25,21 +26,26 @@ namespace FPS.Model
             {
                 spawn = 0;
 
-                if (enemyspawn.Count() <= 4)
+                if (enemyspawn.Count() < 4)
                 {
                     enemyspawn.Add(new Enemy(player, rand));
+                    spawncount--;
+                    //Console.WriteLine(spawncount);
+                    Console.WriteLine(enemyspawn.Count);
                 }
             }
+            if(spawncount <= 0 && enemyspawn.Count ==0)
+            {
+                Console.WriteLine("allah är död");
+                allMonsterdead = true;
+            }
         }
-
         public List<Enemy> GetPosition()
         {
             return enemyspawn;
         }
-
         public void Update(float time)
         {
-
             float seconds = time;
             spawn += seconds;
             TestSpawning();
@@ -55,21 +61,13 @@ namespace FPS.Model
             foreach (Enemy enemies in enemyspawn)
             {
                Vector2 MonsterlogicMouse = new Vector2(coordX, coordY);
-
                bool containCoord = enemies.GetAllSize.Contains(MonsterlogicMouse.X , MonsterlogicMouse.Y);
-                //Rectangle penetrate = new Rectangle((int)MonsterlogicMouse.X,(int) MonsterlogicMouse.Y, 1, 1);
-                //Console.Write(containCoord);
-                //if (enemies.GetAllSize.Intersects(penetrate))
+                
                 if (containCoord)
                     {
                     enemies.enemyHealth -= damage;
-                    Console.WriteLine("{0}", enemies.enemyHealth);
                     }
-               
             }
-            
-
-
             }
         }
     }

@@ -71,7 +71,14 @@ namespace FPS
         // playonce//  Maybe to player class;
         bool playonce = false;
 
+        //EnemyStageRule//
 
+        EnemyStageRule StageSelection;
+        
+
+
+
+          
         //Main Menu//
 
         MainMenu mainMenu;
@@ -151,14 +158,12 @@ namespace FPS
             //MediaPlayer.Play(Berserk);
 
             mainMenu = new MainMenu(graphicss,Content);
+            StageSelection = new EnemyStageRule(Content,EnemySimulation, enemyView,spriteBatch);
 
-            // TODO: use this.Content to load your game content here
+          
         }
 
-        /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// game-specific content.
-        /// </summary>
+        
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
@@ -189,6 +194,7 @@ namespace FPS
 
                 case GameState.PlayGame:
 
+                    
                       Keyboardnow = Keyboard.GetState();
                     if(Keyboardnow.IsKeyDown(Keys.Enter)&& currentKeyboard.IsKeyUp(Keys.Enter))
                     {
@@ -216,7 +222,7 @@ namespace FPS
                 }
 
                 ticktock++;
-                Console.WriteLine(ticktock);
+                
             }
 
             if (!players.swap)
@@ -315,9 +321,9 @@ namespace FPS
                     damage = 4;
                 }
             }
-
-            EnemySimulation.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
-            currentKeyboard = Keyboardnow;
+                    StageSelection.SendingArmies((float)gameTime.ElapsedGameTime.TotalSeconds);
+                    //EnemySimulation.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
+                    currentKeyboard = Keyboardnow;
             prevMouse = mousestate;
             ClickExplosion.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
             cross.Update(MousePosition);
@@ -343,7 +349,8 @@ namespace FPS
                     break;
 
                 case GameState.PlayGame:
-                    enemyView.Draw();
+                    //enemyView.Draw();
+                    StageSelection.Draw(spriteBatch);
 
                     if (!players.swap)     // could send it to Player Controller
                     {

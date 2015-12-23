@@ -49,3 +49,5 @@ C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Con
 C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Content\Mp5.xnb
 C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Content\MainMenu.jpg
 C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Content\play.png
+C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Content\background.jpg
+C:\Users\jan\Documents\Visual Studio 2015\Projects\FPS\FPS\bin\Windows\Debug\Content\Eclipse.jpg
