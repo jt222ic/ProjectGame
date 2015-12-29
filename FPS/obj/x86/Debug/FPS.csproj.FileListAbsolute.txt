@@ -170,3 +170,4 @@ C:\Users\jan\Desktop\project - kopia\FPS\bin\Windows\Debug\SharpDX.XInput.xml
 C:\Users\jan\Desktop\project - kopia\FPS\bin\Windows\Debug\SharpDX.RawInput.xml
 C:\Users\jan\Desktop\project - kopia\FPS\bin\Windows\Debug\SharpDX.Direct3D9.xml
 C:\Users\jan\Desktop\project - kopia\FPS\obj\x86\Debug\FPS.csprojResolveAssemblyReference.cache
+C:\Users\jan\Desktop\project\FPS\obj\x86\Debug\FPS.csprojResolveAssemblyReference.cache
