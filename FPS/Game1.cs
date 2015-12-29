@@ -16,7 +16,7 @@ namespace FPS
     public class Game1 : Game
     {
         //Mostly for viewclass//
-        GraphicsDeviceManager graphics;
+        GraphicsDeviceManager graphics;   // should have seperate the instance of the class // first solving the problem 
         SpriteBatch spriteBatch;
         MouseState prevMouse;
         MouseState mousestate;
@@ -47,8 +47,8 @@ namespace FPS
         SoundEffect DryGun;
         SoundEffectInstance soundEffect;
         SoundEffectInstance ShotgunEffect;
-        Song Berserk;
-        Song Castle;
+        //Song Berserk;
+        //Song Castle;
         SoundEffect ShotLoud;
         SoundEffect MachineLoud;
        //Model//
@@ -74,20 +74,22 @@ namespace FPS
         //EnemyStageRule//
 
         EnemyStageRule StageSelection;
-        
+        PauseMenu buttonQuit, buttonResume, buttonMain;
+        Texture2D pauseTexture;
+        Rectangle pausedRectangle;
 
 
-
-          
         //Main Menu//
 
         MainMenu mainMenu;
         Viewport graphicss;
-        bool pause;
+        
         enum GameState
         {
             MainMenu,
-            PlayGame
+            PlayGame,
+            PauseMenu,
+            GameOver
            
         }
         GameState currentgameState = GameState.MainMenu;
@@ -142,8 +144,8 @@ namespace FPS
             playerHealth = new HealthBar(Content, players, enemies);
             EnemySimulation = new WhackAMole(players);
             enemyView = new EnemyView(Content, spriteBatch, camera, EnemySimulation);
-            Berserk = Content.Load<Song>("gatsu");
-            Castle = Content.Load<Song>("castle");
+            //Berserk = Content.Load<Song>("gatsu");
+            //Castle = Content.Load<Song>("castle");
             //sound//
             ShotLoud = Content.Load<SoundEffect>("oldschool");
             reloadSound = Content.Load<SoundEffect>("reloading");
@@ -159,8 +161,22 @@ namespace FPS
 
             mainMenu = new MainMenu(graphicss,Content);
             StageSelection = new EnemyStageRule(Content,EnemySimulation, enemyView,spriteBatch);
+            // Pause texture//
+            pauseTexture = Content.Load<Texture2D>("pausebild.png");
+            //pausedRectangle = new Rectangle(0, 0, pauseTexture.Width, pauseTexture.Height);
+            //buttonPlay = new PauseMenu();
+            //buttonPlay.Load(Content.Load<Texture2D>("ResumeButton"), new Vector2(400, 400));   // draw here  directly instead // new way of using sprite draw, and sendigng value
+
+            buttonResume = new PauseMenu();
+            buttonResume.Load(Content.Load<Texture2D>("Resume"), new Vector2(200, 200));
+            buttonQuit = new PauseMenu();
+            buttonQuit.Load(Content.Load<Texture2D>("Quit"), new Vector2(400, 200));
+            buttonMain = new PauseMenu();
+            buttonMain.Load(Content.Load<Texture2D>("MainMeny"), new Vector2(400, 400));
 
           
+
+
         }
 
         
@@ -178,9 +194,7 @@ namespace FPS
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
             
-
             switch (currentgameState)
             {
                 case GameState.MainMenu:
@@ -191,19 +205,20 @@ namespace FPS
                     }
                     break;
 
-
                 case GameState.PlayGame:
 
-                    
-                      Keyboardnow = Keyboard.GetState();
-                    if(Keyboardnow.IsKeyDown(Keys.Enter)&& currentKeyboard.IsKeyUp(Keys.Enter))
+
+                    if(players.GameOver())
                     {
-                        Console.Write("Suppose to pause or return to Main screen");
-                        pause = true;
-                        currentgameState = GameState.MainMenu;
+                        currentgameState = GameState.GameOver;
                     }
 
+                    Keyboardnow = Keyboard.GetState();
 
+                    if(Keyboardnow.IsKeyDown(Keys.Enter)&& currentKeyboard.IsKeyUp(Keys.Enter))
+                    {
+                        currentgameState = GameState.PauseMenu;
+                    }
                     playerHealth.Update();
                     mousestate = Mouse.GetState();
                     MousePosition = camera.getLogicalCord(mousestate.X, mousestate.Y);
@@ -212,7 +227,6 @@ namespace FPS
             {
                 if (ticktock != 14)
                 {
-
                     players.SwapWeapon();
                 }
                 else
@@ -220,9 +234,7 @@ namespace FPS
                     secretweapon = true;
                     ticktock = 1;
                 }
-
                 ticktock++;
-                
             }
 
             if (!players.swap)
@@ -291,8 +303,8 @@ namespace FPS
                     ammo -= 0.35f;
                     frameControl++;
                     machinegunAnimation.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
-                    EnemySimulation.setEnemyDead(MousePosition.X, MousePosition.Y, damage);
-                    damage = 0.1f;
+                    
+                    damage = 0.2f;
                 }
                 if (mousestate.RightButton == ButtonState.Pressed && ammo <= maxammo)
                 {
@@ -300,9 +312,7 @@ namespace FPS
                     soundEffect.Play();
                     soundEffect.IsLooped = false;
                     heal.UpdateReLoad();
-
                     ammo += 0.5f;
-                    
                 }
             }
             else
@@ -321,15 +331,40 @@ namespace FPS
                     damage = 4;
                 }
             }
-                    StageSelection.SendingArmies((float)gameTime.ElapsedGameTime.TotalSeconds);
-                    //EnemySimulation.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
-                    currentKeyboard = Keyboardnow;
+            StageSelection.SendingArmies((float)gameTime.ElapsedGameTime.TotalSeconds);
+            currentKeyboard = Keyboardnow;
             prevMouse = mousestate;
             ClickExplosion.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
             cross.Update(MousePosition);
             trans.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
             trans.transition();
             break;
+
+                case GameState.PauseMenu:
+                   
+                  
+                    IsMouseVisible = true;
+
+                    if (buttonMain.isClicked && !buttonResume.isClicked)
+                    {
+                        buttonResume.isClicked = false;
+                        currentgameState = GameState.MainMenu;
+                    }
+                   else if (buttonQuit.isClicked)
+                    {
+                       Exit();
+                    }
+                    else if(buttonResume.isClicked)
+                    { currentgameState = GameState.PlayGame;
+                    }
+                    buttonQuit.Update();
+                    buttonResume.Update();
+                    buttonMain.Update();
+                    break;
+
+                case GameState.GameOver:
+                    
+                    break;
             }
             base.Update(gameTime);
         }
@@ -349,10 +384,10 @@ namespace FPS
                     break;
 
                 case GameState.PlayGame:
-                    //enemyView.Draw();
+                   
                     StageSelection.Draw(spriteBatch);
 
-                    if (!players.swap)     // could send it to Player Controller
+                    if (!players.swap)    
                     {
                         cross.Draw();
                         animation.Draw(spriteBatch, camera);
@@ -375,6 +410,17 @@ namespace FPS
                         playerHealth.Draw(spriteBatch);
                         ShotgunAnimation.Draw(spriteBatch, camera);
                     }
+                    break;
+
+                case GameState.PauseMenu:
+                    spriteBatch.Begin();
+                    buttonResume.Draw(spriteBatch);
+                    buttonMain.Draw(spriteBatch);
+                   buttonQuit.Draw(spriteBatch);
+                    spriteBatch.End();
+                    break;
+
+                case GameState.GameOver:
                     break;
             }
 

@@ -44,9 +44,6 @@ namespace FPS.View
         {
             float screenX = x / scaleX;
             float screenY = y / scaleY;
-
-
-            
             return new Vector2(x, y);
         }
 

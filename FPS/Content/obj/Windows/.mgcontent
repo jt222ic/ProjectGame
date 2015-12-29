@@ -4,13 +4,13 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/jan/Documents/Visual Studio 2015/Projects/FPS/FPS/Content/firesound.wav</File>
-    <File>C:/Users/jan/Documents/Visual Studio 2015/Projects/FPS/FPS/Content/reloading.wav</File>
-    <File>C:/Users/jan/Documents/Visual Studio 2015/Projects/FPS/FPS/Content/DryGun.wav</File>
-    <File>C:/Users/jan/Documents/Visual Studio 2015/Projects/FPS/FPS/Content/gatsu.mp3</File>
-    <File>C:/Users/jan/Documents/Visual Studio 2015/Projects/FPS/FPS/Content/castle.mp3</File>
-    <File>C:/Users/jan/Documents/Visual Studio 2015/Projects/FPS/FPS/Content/shotgun1.wav</File>
-    <File>C:/Users/jan/Documents/Visual Studio 2015/Projects/FPS/FPS/Content/oldschool.wav</File>
-    <File>C:/Users/jan/Documents/Visual Studio 2015/Projects/FPS/FPS/Content/Mp5.wav</File>
+    <File>C:/Users/jan/Desktop/project/FPS/Content/firesound.wav</File>
+    <File>C:/Users/jan/Desktop/project/FPS/Content/reloading.wav</File>
+    <File>C:/Users/jan/Desktop/project/FPS/Content/DryGun.wav</File>
+    <File>C:/Users/jan/Desktop/project/FPS/Content/gatsu.mp3</File>
+    <File>C:/Users/jan/Desktop/project/FPS/Content/castle.mp3</File>
+    <File>C:/Users/jan/Desktop/project/FPS/Content/shotgun1.wav</File>
+    <File>C:/Users/jan/Desktop/project/FPS/Content/oldschool.wav</File>
+    <File>C:/Users/jan/Desktop/project/FPS/Content/Mp5.wav</File>
   </SourceFiles>
 </SourceFileCollection>

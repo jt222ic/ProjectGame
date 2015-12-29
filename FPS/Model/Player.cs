@@ -9,9 +9,11 @@ namespace FPS.Model
 {
     class Player
     {
-        public int Health = 167;
+        public int Health = 167;   // encapsulation ?? no .. purpose to be able to change manually on Unity.
+        public int ZeroHealth = 0;
         public bool swap = false;
         Enemy enemy;
+        
 
         public Player(Enemy enemy)
         {
@@ -27,7 +29,11 @@ namespace FPS.Model
             {
                 swap = false;
            }
-            
+        }
+
+        public bool GameOver()
+        {
+            return Health <= ZeroHealth;
         }
         
     }

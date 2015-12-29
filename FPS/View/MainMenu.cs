@@ -22,9 +22,9 @@ namespace FPS.View
         public MainMenu(Viewport graphics,ContentManager Content)
         {
             
-            MainScreen = Content.Load<Texture2D>("MainMenu.jpg");
-            ButtonPlay = Content.Load<Texture2D>("play.png");
-             size = new Vector2(350,300);
+           MainScreen = Content.Load<Texture2D>("UncleDonald.jpg");
+           ButtonPlay = Content.Load<Texture2D>("play.png");
+           size = new Vector2(350,300);
         }
 
         public void Update()
@@ -42,12 +42,10 @@ namespace FPS.View
                 }
                 
             }
-           
         }
 
         public void Draw(SpriteBatch spritebatch)
         {
-          
             spritebatch.Begin();
             spritebatch.Draw(MainScreen, new Vector2(0, 0), Color.White);
             spritebatch.Draw(ButtonPlay, rectangle, Color.White);

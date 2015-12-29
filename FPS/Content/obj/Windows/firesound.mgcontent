@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/jan/Documents/Visual Studio 2015/Projects/FPS/FPS/Content/firesound.wav</SourceFile>
+  <SourceFile>C:/Users/jan/Desktop/project/FPS/Content/firesound.wav</SourceFile>
   <SourceTime>2015-12-08T19:02:20.925615+01:00</SourceTime>
-  <DestFile>C:/Users/jan/Documents/Visual Studio 2015/Projects/FPS/FPS/Content/bin/Windows/firesound.xnb</DestFile>
-  <DestTime>2015-12-19T02:10:45.7641756+01:00</DestTime>
+  <DestFile>C:/Users/jan/Desktop/project/FPS/Content/bin/Windows/firesound.xnb</DestFile>
+  <DestTime>2015-12-23T15:12:22.0500933+01:00</DestTime>
   <Importer>WavImporter</Importer>
   <ImporterTime>2015-04-29T19:14:44+02:00</ImporterTime>
   <Processor>SoundEffectProcessor</Processor>

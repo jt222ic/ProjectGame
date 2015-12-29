@@ -21,13 +21,12 @@ namespace FPS.Model
         private float Monstersize = 100;
         private Vector2 enemymovement = new Vector2(0.5f, 0.5f);
         private Vector2 RandomPosition;
-        private int enemyleft = 4;
+        private bool MonsterPerformAttack;
         
         public Enemy(Player player, Random rand)
         {
-            
             this.player = player;
-           RandomPosition = new Vector2(position.X *40, (float)rand.NextDouble() );
+            RandomPosition = new Vector2(position.X *40, (float)rand.NextDouble() );
             RandomPosition.Normalize();
             RandomPosition = RandomPosition * ((float)rand.NextDouble() + 200);
             enemymovement = RandomPosition;
@@ -36,21 +35,26 @@ namespace FPS.Model
 
         public void EnemyHurtsPlayer()
         {
-            if (enemyHealth ==0)
+            if (enemyHealth <= Deadcondition)
             {
-               // Dead = true;
+                Dead = true;
                 enemymovement *= 0;
-                Console.WriteLine("sluta dö flera gånger");
+                MonsterPerformAttack = false;
             }
-           
             else if (waittime > 0 && enemyHealth > Deadcondition)
             {
                 waittime -= cooldown;
+
             }
             if (waittime == 0 && enemyHealth > Deadcondition)
             {
+                MonsterPerformAttack = true;
                 player.Health -= shootdamage;
                 waittime += 80;
+            }
+            else if(waittime == 40)
+            {
+                MonsterPerformAttack = false;
             }
         }
 
@@ -59,7 +63,7 @@ namespace FPS.Model
             position += enemymovement * time;
             
         }
-        public bool alive
+        public bool Deadyet
         {
             get{ return Dead; }
             set
@@ -92,6 +96,10 @@ namespace FPS.Model
             {
                 return new Rectangle((int)position.X, (int)position.Y, (int)Monstersize, (int)Monstersize);
             }
+        }
+        public bool AttackAnimation()
+        {
+            return MonsterPerformAttack;
         }
     }
 
