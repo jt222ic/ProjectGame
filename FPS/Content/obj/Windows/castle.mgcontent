@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/jan/Desktop/project/FPS/Content/castle.mp3</SourceFile>
+  <SourceFile>C:/Users/jan/Desktop/project - kopia/FPS/Content/castle.mp3</SourceFile>
   <SourceTime>2015-12-18T16:09:08.2653325+01:00</SourceTime>
-  <DestFile>C:/Users/jan/Desktop/project/FPS/Content/bin/Windows/castle.xnb</DestFile>
-  <DestTime>2015-12-23T15:12:25.1833082+01:00</DestTime>
+  <DestFile>C:/Users/jan/Desktop/project - kopia/FPS/Content/bin/Windows/castle.xnb</DestFile>
+  <DestTime>2015-12-29T19:25:38.4260612+01:00</DestTime>
   <Importer>Mp3Importer</Importer>
   <ImporterTime>2015-04-29T19:14:44+02:00</ImporterTime>
   <Processor>SongProcessor</Processor>
@@ -15,6 +15,6 @@
   <Dependencies />
   <BuildAsset />
   <BuildOutput>
-    <string>C:/Users/jan/Desktop/project/FPS/Content/bin/Windows/castle.wma</string>
+    <string>C:/Users/jan/Desktop/project - kopia/FPS/Content/bin/Windows/castle.wma</string>
   </BuildOutput>
 </PipelineBuildEvent>
