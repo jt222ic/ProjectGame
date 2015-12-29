@@ -18,3 +18,9 @@ Press R one time and shotgun will appear. To shoot with Shotgun u must hold in l
 Press R 15 times a sub machine gun will appear which has inconssistent damage throughout.
 Game ends with u dying On the yellow bar
 
+Need to fix:
+New Action with monster dissapearing from the screen.
+nicer design on pause and gameover screen.
+Map level
+Camera design /scaling and all that shit
+Particle effects 
