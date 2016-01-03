@@ -13,9 +13,10 @@ namespace FPS.Model
     {
         
         WhackAMole EnemySimulation;
+        BossSimulation bossSimulation;
         EnemyView enemyView;
         Background background;
-       
+        BossView bossenView;
 
         enum Stage
         {
@@ -24,40 +25,38 @@ namespace FPS.Model
             Stage3,
         }
 
-        public EnemyStageRule(ContentManager Content, WhackAMole Enemysimulation, EnemyView enemyView, SpriteBatch spritebatch)
+        public EnemyStageRule(ContentManager Content, WhackAMole Enemysimulation, EnemyView enemyView, SpriteBatch spritebatch, Camera camera, BossSimulation bosssimulation)
         {
             this.EnemySimulation = Enemysimulation;
             this.enemyView = enemyView;
-            this.background = new Background(Content, spritebatch);
+            this.background = new Background(Content, spritebatch, camera);
+            bossSimulation = bosssimulation;
+            this.bossenView = new BossView(Content,spritebatch, camera, bossSimulation);
+           
         }
-        Stage currentgameState = Stage.Stage1;
+        Stage currentgameState = Stage.Stage3;
 
         public void SendingArmies(float time)
         {
-            EnemySimulation.Update(time);
-            
             switch (currentgameState)
             {
                 case Stage.Stage1:
-
-                       // enemyView.FadeAway(time);
-
+                    EnemySimulation.Update(time);
+                    enemyView.FadeAway(time);
                     if (EnemySimulation.reallyDead() == true)            // måste lägga till hur många monster är döda kanske skapa en bool function och returnera dead<= 0???
                     {
                         currentgameState = Stage.Stage2;
                     }
                     break;
                 case Stage.Stage2:
-                   
-
                     break;
-
                 case Stage.Stage3:
-                    break;
+                   this.bossSimulation.Update(time);
+                    this.bossenView.Update(time);
 
+                    break;
             }
         }
-
         public void Draw(SpriteBatch spritebatch)
         {
 
@@ -72,6 +71,10 @@ namespace FPS.Model
                     break;
 
                 case Stage.Stage3:
+                   background.DrawStage3();
+                    this.bossenView.Draw();
+                    this.bossenView.DrawSphere();
+                    
                     break;
 
             }

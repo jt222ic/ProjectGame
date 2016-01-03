@@ -16,8 +16,6 @@ namespace FPS.View
         Vector2 spritePosition;
         Texture2D CrossAim;
         SpriteBatch spritebatch;
-        
-        
 
         public void Update(Vector2 MousePosition)
         {
@@ -33,7 +31,6 @@ namespace FPS.View
 
         public void Draw()
         {
-
             float scale = camera.ScaleObject(crosshairSize, CrossAim.Width);
             this.spritebatch.Begin();
             this.spritebatch.Draw(CrossAim, camera.CenterMousePosition(CrossAim, CrossAim.Width/2, spritePosition), Color.White);

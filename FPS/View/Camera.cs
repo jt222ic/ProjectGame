@@ -21,7 +21,6 @@ namespace FPS.View
             scaleX = Height;
             scaleY = Width;
 
-
             if (scaleX<scaleY)
             {
                 scale = scaleX;
@@ -30,6 +29,10 @@ namespace FPS.View
             {
                 scale = scaleY;
             }
+        }
+        public float getGameArea(float width)
+        {
+            return scale / width ;
         }
 
         public Vector2 GetVisualCoord(float LogicX, float LogicY)

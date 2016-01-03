@@ -76,13 +76,18 @@ namespace FPS
         EnemyStageRule StageSelection;
         PauseMenu buttonQuit, buttonResume, buttonMain;
         Texture2D pauseTexture;
-        Rectangle pausedRectangle;
+        
 
 
         //Main Menu//
 
         MainMenu mainMenu;
         Viewport graphicss;
+
+
+        // 
+
+        BossSimulation bossSimu;
         
         enum GameState
         {
@@ -158,9 +163,9 @@ namespace FPS
 
 
             //MediaPlayer.Play(Berserk);
-
+            bossSimu = new BossSimulation(players);
             mainMenu = new MainMenu(graphicss,Content);
-            StageSelection = new EnemyStageRule(Content,EnemySimulation, enemyView,spriteBatch);
+            StageSelection = new EnemyStageRule(Content,EnemySimulation, enemyView,spriteBatch ,camera, bossSimu);
             // Pause texture//
             pauseTexture = Content.Load<Texture2D>("pausebild.png");
             //pausedRectangle = new Rectangle(0, 0, pauseTexture.Width, pauseTexture.Height);
@@ -175,8 +180,6 @@ namespace FPS
             buttonMain.Load(Content.Load<Texture2D>("MainMeny"), new Vector2(400, 400));
 
           
-
-
         }
 
         
@@ -250,6 +253,8 @@ namespace FPS
                     ammo -= 1;
                     ClickExplosion.CreateExplosion();
                     EnemySimulation.setEnemyDead(MousePosition.X, MousePosition.Y, damage);
+                    bossSimu.BallGetHit(MousePosition.X, MousePosition.Y, damage);
+                     
                     reload.fade = 1;
                     animation.fade = 0;
                 }

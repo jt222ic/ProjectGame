@@ -18,7 +18,8 @@ namespace FPS.View
         Camera camera;
         WhackAMole Enemycontent;
         Color color;
-        public float fade = 1;
+        public float fade;
+     
         
         
         //Texture2D background;
@@ -32,20 +33,27 @@ namespace FPS.View
             this.spritebatch = spritebatch;
             this.camera = camera;
             Enemycontent = EnemyContent;
+          
             
         }
         public void FadeAway(float time)
         {
-            //foreach (Enemy enemies in Enemycontent.GetPosition())
-            //{
-            //        if (enemies.Dead)
-            //        {
-            //        fade -= time * 0.3f;
-            //       }
-                
-            //}
+
+            
+                foreach (Enemy enemies in Enemycontent.GetPosition())
+                {
+
+                    if (enemies.Deadyet == true)
+                    {
+                        fade -= time * 0.3f;
+                    }
+                    else
+                    {
+                        fade = 1;
+                    }
+            }
         }
-     
+
         public void Draw()
         {
             this.spritebatch.Begin();

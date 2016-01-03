@@ -35,7 +35,7 @@ namespace FPS.View
         {
 
             mouse = Mouse.GetState();
-            rectangle = new Rectangle((int)position.X, (int)position.Y, 50, 50);           // size and position of the mouse
+            rectangle = new Rectangle((int)position.X, (int)position.Y, 50, 50);           // size and position off the bar
             Rectangle mouseRectangle = new Rectangle(mouse.X, mouse.Y, 1, 1 );   // rectangle of the mouse 
 
             if (mouseRectangle.Intersects(rectangle))  // code from Youtube 

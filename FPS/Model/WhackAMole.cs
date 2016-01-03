@@ -10,12 +10,14 @@ namespace FPS.Model
     class WhackAMole
     {
         private List<Enemy> enemyspawn = new List<Enemy>();
+
         Player player;
         float spawn = 0;
-        float spawncount = 4;
         Random rand = new Random();
         public bool allMonsterdead;
         int monsterCount = 4;
+        public bool collectionOfDead;
+        int onemonsterDead;
 
         public WhackAMole(Player player)
         {
@@ -23,34 +25,38 @@ namespace FPS.Model
         }
         public void TestSpawning()
         {
-            if (spawn >= 2)
+            if (spawn >= 1)
             {
                 spawn = 0;
 
                 if (enemyspawn.Count() < 4)
                 {
                     enemyspawn.Add(new Enemy(player, rand));
-                    spawncount--;
                 }
-                DeadList();
             }
-
         }
         public void DeadList()
         {
+
+            Console.Write(onemonsterDead);
             foreach (Enemy enemy in enemyspawn)
             {
-                    if (!enemy.Deadyet && enemyspawn.Count >=0)
-                    {                  
-                        allMonsterdead = false;
-                        monsterCount--;
+                for (int i = 0; i < enemyspawn.Count; i++)
+                {
+                    if (!enemyspawn[i].Deadyet)
+                    {
+                        onemonsterDead = 1;
                     }
-                    else if(monsterCount <=0)   // more precise for other weapon, if not it doesnt work for other weapon loadout
+                    if (onemonsterDead == 4)
+                    {
+                        Console.WriteLine("hej Monnika");
+                    }
+                    else if (monsterCount == 0)
                     {
                         allMonsterdead = true;
                     }
+                }
             }
-            
         }
 
         public bool reallyDead()
@@ -66,19 +72,35 @@ namespace FPS.Model
             float seconds = time;
             spawn += seconds;
             TestSpawning();
-            
+
 
             foreach (Enemy enemies in enemyspawn)
             {
-                enemies.Move(seconds);
+                enemies.Update(seconds);
                 enemies.EnemyHurtsPlayer();
-                
+                RotationEnemy(enemies);
+            }
+        }
+
+        public void RotationEnemy(Enemy enemies)
+        {
+
+            if (enemies.Pose.Y <= 0 || enemies.Pose.Y >= 300)
+            {
+                enemies.rotationspeedY();
+            }
+            if (enemies.Pose.X <= 0 || enemies.Pose.X >= 600)
+            {
+                enemies.rotationspeedX();
             }
         }
         public void setEnemyDead(float coordX, float coordY, float damage)
         {
-            
-                foreach (Enemy enemies in enemyspawn)
+
+            foreach (Enemy enemies in enemyspawn)
+            {
+
+                if (!enemies.Deadyet)
                 {
                     Vector2 MonsterlogicMouse = new Vector2(coordX, coordY);
                     bool containCoord = enemies.GetAllSize.Contains(MonsterlogicMouse.X, MonsterlogicMouse.Y);
@@ -86,11 +108,16 @@ namespace FPS.Model
                     if (containCoord)
                     {
                         enemies.enemyHealth -= damage;
+                        DeadList();
                     }
+
                 }
             }
-
-            }
         }
+    }
+}
+
+            
+        
     
 

@@ -13,7 +13,6 @@ namespace FPS.Model
         public int ZeroHealth = 0;
         public bool swap = false;
         Enemy enemy;
-        
 
         public Player(Enemy enemy)
         {
