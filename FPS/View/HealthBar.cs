@@ -33,8 +33,6 @@ namespace FPS.View
             //currentHealth = fullHealth;
             this.enemy = enemy;
             playerCondition = player;
-          
-
         }
 
         public void Update()

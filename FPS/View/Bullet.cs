@@ -36,8 +36,8 @@ namespace FPS.View
         {
             Vector2 pose = new Vector2(oldstate.X, oldstate.Y);
             Vector2 vector = camera.GetVisualCoord(position.X, position.Y);
-            Vector2 center = camera.CenterMousePosition(spark, spark.Width, pose);
-            spriteBatch.Draw(spark, center, null, Color.White, 0f, center/2, 0.1f, SpriteEffects.None, 0); 
+            Vector2 center = camera.CenterMousePosition(spark,spark.Width/2, pose);
+            spriteBatch.Draw(spark, center, null, Color.White, 0f, center, 0.1f, SpriteEffects.None, 0); 
            
         }
     }

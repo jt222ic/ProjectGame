@@ -14,15 +14,15 @@ namespace FPS.Model
         public int Deadcondition = 0;
         public int waittime = 400;
         public int cooldown = 1;
-        public int MegaBlaster = 10;
-
+        public int MegaBlaster = 20;
+       public bool regen1time = true;
         public Vector2 BossPosition = new Vector2(280,200);
         public float BossSize = 255;
         public int Monstersize = 2;
        public bool Sphereshield = false;
         private bool BossImmune = false;
-        private bool BossAttack;
-        private bool BossDead;
+        public bool BossAttack;
+        public bool BossDead;
        
         private bool BossPerformClone;
         BossSphere SphereBall;
@@ -31,6 +31,7 @@ namespace FPS.Model
         Vector2 clonePosition2 = new Vector2(280, 200);
         Vector2 CloneMoving;
         Vector2 CloneMoving2;
+        //int percentDamage = 0.2f;
 
         float CloneCoolDown = 100;
 
@@ -57,7 +58,8 @@ namespace FPS.Model
         }
         public void BossClone()
         {
-            if (BossHealth > 120 && BossHealth <140)
+            BossPerformClone = true;
+            if (BossHealth > 120 && BossHealth <140 || BossHealth <=50)
             {
                 BossPerformClone = true;
                 CloneCoolDown -= cooldown;
@@ -83,13 +85,22 @@ namespace FPS.Model
         }
         public void BossCurrentHealth()
         {
-            if( BossHealth==110 && BossHealth >= 100)
+            if( BossHealth<=110 && BossHealth >= 100)
             {
                 Differentspells(1);
             }
             else if(BossHealth <140 || BossHealth > 120)
             {
                 Differentspells(2);
+            }
+             if( BossHealth <=50)
+            {
+                Differentspells(2);
+            }
+              if(BossHealth <20)
+            {
+                Differentspells(3);
+                Differentspells(1);
             }
         }
         public void Differentspells(int spells)
@@ -105,6 +116,19 @@ namespace FPS.Model
                 case 2:
                     BossClone();
                     break;
+                case 3:
+                    BossRestoration();
+                    break;
+            }
+        }
+        public void BossRestoration()
+        {
+           
+            if (regen1time)
+            {
+
+                player.Health -= (player.Health) * 4/10;
+                regen1time = false;
             }
         }
 
@@ -133,7 +157,7 @@ namespace FPS.Model
                 player.Health -= MegaBlaster;
                 waittime += 400;
             }
-            else if (waittime == 40)
+            else if (waittime == 200)
             {
                 BossAttack = false;
             }

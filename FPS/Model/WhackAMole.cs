@@ -16,8 +16,7 @@ namespace FPS.Model
         Random rand = new Random();
         public bool allMonsterdead;
         int monsterCount = 4;
-        public bool collectionOfDead;
-        int onemonsterDead;
+    
 
         public WhackAMole(Player player)
         {
@@ -33,31 +32,10 @@ namespace FPS.Model
                 {
                     enemyspawn.Add(new Enemy(player, rand));
                 }
-            }
-        }
-        public void DeadList()
-        {
 
-            Console.Write(onemonsterDead);
-            foreach (Enemy enemy in enemyspawn)
-            {
-                for (int i = 0; i < enemyspawn.Count; i++)
-                {
-                    if (!enemyspawn[i].Deadyet)
-                    {
-                        onemonsterDead = 1;
-                    }
-                    if (onemonsterDead == 4)
-                    {
-                        Console.WriteLine("hej Monnika");
-                    }
-                    else if (monsterCount == 0)
-                    {
-                        allMonsterdead = true;
-                    }
-                }
             }
         }
+     
 
         public bool reallyDead()
         {
@@ -72,6 +50,7 @@ namespace FPS.Model
             float seconds = time;
             spawn += seconds;
             TestSpawning();
+          
 
 
             foreach (Enemy enemies in enemyspawn)
@@ -84,14 +63,16 @@ namespace FPS.Model
 
         public void RotationEnemy(Enemy enemies)
         {
-
-            if (enemies.Pose.Y <= 0 || enemies.Pose.Y >= 300)
+            if (!enemies.Deadyet)
             {
-                enemies.rotationspeedY();
-            }
-            if (enemies.Pose.X <= 0 || enemies.Pose.X >= 600)
-            {
-                enemies.rotationspeedX();
+                if (enemies.Pose.Y <= 0 || enemies.Pose.Y >= 300)
+                {
+                    enemies.rotationspeedY();
+                }
+                if (enemies.Pose.X <= 0 || enemies.Pose.X >= 600)
+                {
+                    enemies.rotationspeedX();
+                }
             }
         }
         public void setEnemyDead(float coordX, float coordY, float damage)
@@ -107,8 +88,10 @@ namespace FPS.Model
 
                     if (containCoord)
                     {
+                       
                         enemies.enemyHealth -= damage;
-                        DeadList();
+                       
+                       
                     }
 
                 }

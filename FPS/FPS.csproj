@@ -91,7 +91,12 @@
     <Compile Include="Model\BossSphere.cs" />
     <Compile Include="Model\Enemy.cs" />
     <Compile Include="Model\EnemyStageRule.cs" />
+    <Compile Include="Model\Level.cs" />
+    <Compile Include="Model\LevelController.cs" />
     <Compile Include="Model\Player.cs" />
+    <Compile Include="ParticleView\particleSystem.cs" />
+    <Compile Include="ParticleView\Raiton.cs" />
+    <Compile Include="ParticleView\splitterParticle.cs" />
     <Compile Include="View\Background.cs" />
     <Compile Include="View\BossView.cs" />
     <Compile Include="View\PauseMenu.cs" />
@@ -155,6 +160,9 @@
     <Content Include="Content\Eclipse.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Electricity.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\firesound.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -186,6 +194,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Quit.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Raiton.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\rawr.gif">
@@ -228,6 +239,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

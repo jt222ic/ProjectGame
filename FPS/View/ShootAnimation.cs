@@ -12,19 +12,19 @@ namespace FPS.View
 
         int NumbersOfFrame = 6;
         float maxTime = 0.1f;
-       public float timeElapsed;
+        public float timeElapsed;
         int frameX;
         float frameY;
         int numberFrameX = 3;
         int numberFrameY = 2;
         private Texture2D Shoot;
-       public int frame;
+        public int frame;
         Vector2 scale = new Vector2(20f, 50f);
         public float fade = 1;
 
         public ShootAnimation(Texture2D Doom)
         {
-            
+
 
             Shoot = Doom;
             frameX = Shoot.Width / numberFrameX;                // hitta logiska modellen delar upp det i frame 6x4 i bitar av bilden i x och y led
@@ -52,19 +52,6 @@ namespace FPS.View
             float percentAnimated = timeElapsed / maxTime;
             frame = (int)(percentAnimated * NumbersOfFrame);
 
-            if (timeElapsed > maxTime)
-            {
-                if (frame > 3)
-                {
-                    frame = 0;
-                }
-                else
-                {
-                    frame++;
-                }
-
-                timeElapsed = 0;                          // restart timer after the animation time-out
-            }                                           // väljer bildrutorna i PNG // CHOSING THE PICTURE BOX OUT OF PNG FILE
 
         }
     }

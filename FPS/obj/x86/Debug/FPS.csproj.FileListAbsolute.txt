@@ -178,3 +178,6 @@ C:\Users\jan\Desktop\project\FPS\obj\x86\Debug\FPS.application
 C:\Users\jan\Desktop\project\FPS\bin\Windows\Debug\Content\Castlevania.jpg
 C:\Users\jan\Desktop\project\FPS\bin\Windows\Debug\Content\boss.gif
 C:\Users\jan\Desktop\project\FPS\bin\Windows\Debug\Content\Crystal_Ball.png
+C:\Users\jan\Desktop\project\FPS\bin\Windows\Debug\Content\Drink.xnb
+C:\Users\jan\Desktop\project\FPS\bin\Windows\Debug\Content\Raiton.png
+C:\Users\jan\Desktop\project\FPS\bin\Windows\Debug\Content\Electricity.png

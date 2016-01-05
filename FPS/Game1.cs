@@ -144,7 +144,7 @@ namespace FPS
             ReLoad = Content.Load<Texture2D>("Badass.png");
             reload = new ReLoadAnimation(ReLoad);
             trans = new Transition(animation, reload);
-            players = new Player(enemies);
+            players = new Player(enemies,Content);
             enemies = new Enemy(players, random);
             playerHealth = new HealthBar(Content, players, enemies);
             EnemySimulation = new WhackAMole(players);
@@ -165,7 +165,7 @@ namespace FPS
             //MediaPlayer.Play(Berserk);
             bossSimu = new BossSimulation(players);
             mainMenu = new MainMenu(graphicss,Content);
-            StageSelection = new EnemyStageRule(Content,EnemySimulation, enemyView,spriteBatch ,camera, bossSimu);
+            StageSelection = new EnemyStageRule(Content,EnemySimulation, enemyView,spriteBatch ,camera, bossSimu, graphics);
             // Pause texture//
             pauseTexture = Content.Load<Texture2D>("pausebild.png");
             //pausedRectangle = new Rectangle(0, 0, pauseTexture.Width, pauseTexture.Height);
@@ -210,8 +210,8 @@ namespace FPS
 
                 case GameState.PlayGame:
 
-
-                    if(players.GameOver())
+                    IsMouseVisible = false;
+                    if(players.GameOver() || bossSimu.GameOver)
                     {
                         currentgameState = GameState.GameOver;
                     }
@@ -226,7 +226,13 @@ namespace FPS
                     mousestate = Mouse.GetState();
                     MousePosition = camera.getLogicalCord(mousestate.X, mousestate.Y);
 
-                    if (Keyboardnow.IsKeyDown(Keys.R) && currentKeyboard.IsKeyUp(Keys.R))
+
+                    if (Keyboardnow.IsKeyDown(Keys.E) && currentKeyboard.IsKeyUp(Keys.E))
+                    {
+                        players.Regenerate();
+                    }
+
+                        if (Keyboardnow.IsKeyDown(Keys.R) && currentKeyboard.IsKeyUp(Keys.R))
             {
                 if (ticktock != 14)
                 {
@@ -253,9 +259,15 @@ namespace FPS
                     ammo -= 1;
                     ClickExplosion.CreateExplosion();
                     EnemySimulation.setEnemyDead(MousePosition.X, MousePosition.Y, damage);
-                    bossSimu.BallGetHit(MousePosition.X, MousePosition.Y, damage);
-                     
-                    reload.fade = 1;
+
+                            if(StageSelection.currentgameState == Stage.Stage3)
+                            {
+                                bossSimu.BallGetHit(MousePosition.X, MousePosition.Y, damage);
+                            }
+
+
+
+                            reload.fade = 1;
                     animation.fade = 0;
                 }
                 else if (prevMouse.LeftButton == ButtonState.Released && prevMouse.LeftButton == ButtonState.Released)
@@ -308,8 +320,11 @@ namespace FPS
                     ammo -= 0.35f;
                     frameControl++;
                     machinegunAnimation.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
-                    
-                    damage = 0.2f;
+                            if (StageSelection.currentgameState == Stage.Stage3)
+                            {
+                                bossSimu.BallGetHit(MousePosition.X, MousePosition.Y, damage);
+                            }
+                            damage = 1;
                 }
                 if (mousestate.RightButton == ButtonState.Pressed && ammo <= maxammo)
                 {
@@ -330,13 +345,17 @@ namespace FPS
                     {
                         ShotLoud.Play();
                         EnemySimulation.setEnemyDead(MousePosition.X, MousePosition.Y, damage);
-                        frameControl = 0;
+                                if (StageSelection.currentgameState == Stage.Stage3)
+                                {
+                                    bossSimu.BallGetHit(MousePosition.X, MousePosition.Y, damage);
+                                }
+                                frameControl = 0;
                     }
                     frameControl++;
-                    damage = 4;
+                    damage = 6;
                 }
             }
-            StageSelection.SendingArmies((float)gameTime.ElapsedGameTime.TotalSeconds);
+            StageSelection.SendingArmies((float)gameTime.ElapsedGameTime.TotalSeconds, (float)gameTime.ElapsedGameTime.TotalMilliseconds);
             currentKeyboard = Keyboardnow;
             prevMouse = mousestate;
             ClickExplosion.Update((float)gameTime.ElapsedGameTime.TotalSeconds);

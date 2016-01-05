@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FPS.exe" size="181608">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FPS.exe" size="185192">
       <assemblyIdentity name="FPS" version="3.4.0.456" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>PYT1YSBRpcHOpe7ckoH08NvDSPw=</dsig:DigestValue>
+        <dsig:DigestValue>S9ebXPuVtII62xd0QgdWpimNfbg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -282,6 +282,15 @@
       <dsig:DigestValue>gCeC5TEyOjsHsMh3+Icxc4D1XBc=</dsig:DigestValue>
     </hash>
   </file>
+  <file name="Content\Drink.xnb" size="296161">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>qj+0/LUkcQg35dFBm2rybG41jNs=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="Content\DryGun.xnb" size="179817">
     <hash>
       <dsig:Transforms>
@@ -298,6 +307,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>evOhlb6Ixn3zBbHLIv0buNfucZ0=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Electricity.png" size="181555">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>nQScghKAntL9+kiYJb6+2o/Nguo=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\firesound.wav" size="48566">
@@ -442,6 +460,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>91XNXx+u+vO2bGuKvjtOkKVliFU=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Raiton.png" size="9845">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>KBw+E2t7UeY6avUVL9XQ4s5rhMo=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\rawr.gif" size="18440">

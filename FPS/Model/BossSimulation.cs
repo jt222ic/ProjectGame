@@ -13,6 +13,7 @@ namespace FPS.Model
         Boss Bossen;
         float spawn = 0;
         int ball = 6;
+        public bool GameOver = false;
         //float spawn;
         public BossSimulation(Player player)
         {
@@ -31,11 +32,15 @@ namespace FPS.Model
                         balls.Add(new BossSphere());
                     }
                 }
-            
         }
 
         public void Update(float time)
         {
+            if(Bossen.BossHealth<=0)
+            {
+                Bossen.BossDead = true;
+                GameOver = true;
+            }
             
             Bossen.Update(time);
             float seconds = time;
@@ -43,8 +48,6 @@ namespace FPS.Model
 
             if (Bossen.SphereShield)
             {
-                
-                
                 summon();
 
                 foreach (BossSphere sphere in balls)
@@ -65,7 +68,7 @@ namespace FPS.Model
         public void BallGetHit(float MouseposX, float MouseposY, float damage)
         {
             Vector2 MousePosition = new Vector2(MouseposX, MouseposY);
-            Rectangle MouseRect = new Rectangle((int)MousePosition.X, (int)MousePosition.Y, 1, 1);
+            Rectangle MouseRect = new Rectangle((int)MousePosition.X, (int)MousePosition.Y, 2, 2);
 
             Rectangle BossTexture = new Rectangle((int)Bossen.PositionBoss.X, (int)Bossen.PositionBoss.Y, (int)Bossen.PositionBoss.Width, (int)Bossen.PositionBoss.Height);
             if (MouseRect.Intersects(BossTexture))
