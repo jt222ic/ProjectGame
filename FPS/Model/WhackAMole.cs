@@ -32,7 +32,6 @@ namespace FPS.Model
                 {
                     enemyspawn.Add(new Enemy(player, rand));
                 }
-
             }
         }
      

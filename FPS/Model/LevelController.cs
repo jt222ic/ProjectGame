@@ -13,22 +13,18 @@ namespace FPS.Model
         Level level;
         Texture2D grass;
         Texture2D path;
-        public LevelController(ContentManager Content)
+
+        public LevelController(ContentManager Content, Level level)
         {
-            level = new Level();
-
-            // grass = Content.Load<Texture2D>("grass");
-            // path = Content.Load<Texture2D>("path");
-            //level.AddTexture(grass);
-            //level.AddTexture(path);
+            this.level = level;
+            grass = Content.Load<Texture2D>("grass");
+            path = Content.Load<Texture2D>("path");
+            level.AddTexture(grass);
+            level.AddTexture(path);
         }
-
-
         public void Draw(SpriteBatch spritebatch)
         {
-
-            level.Draw(spritebatch);
-
+           this.level.Draw(spritebatch);
         }
     }
 }

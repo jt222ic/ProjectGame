@@ -89,7 +89,7 @@ namespace FPS.Model
                         Bossen.BossHealth -= 5;   // have to hardcode or the if sats will be on 110 boss health
                     }
                 }
-               
+                ball = 6;
             }
             foreach (BossSphere sphere in balls)
             {
@@ -106,6 +106,7 @@ namespace FPS.Model
                 }
                
             }
+            
         }
     }
 }

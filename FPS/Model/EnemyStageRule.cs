@@ -31,7 +31,11 @@ namespace FPS.Model
         LevelController levelcontroller;
         Raiton Particle;
         particleSystem particlesystem;
-        
+        Snake enemy1;
+        Level level;
+        Texture2D enemyTexture;
+        public float time;
+        public float Micro;
         //public enum Stage
         //{
         //    Stage1,
@@ -46,14 +50,19 @@ namespace FPS.Model
             this.background = new Background(Content, spritebatch, camera);
             bossSimulation = bosssimulation;
             this.bossenView = new BossView(Content,spritebatch, camera, bossSimulation);
-            levelcontroller = new LevelController(Content);
+            level = new Level();
+            levelcontroller = new LevelController(Content,level);
             Particle = new Raiton(Content, bossSimulation);
             particlesystem = new particleSystem(Content, bossSimulation);
+            enemyTexture = Content.Load<Texture2D>("enemy.gif");
+            enemy1 = new Snake(enemyTexture,Vector2.Zero,0.9f);
         }
-       public Stage currentgameState = Stage.Stage1;
+       public Stage currentgameState = Stage.Stage3;
 
         public void SendingArmies(float time, float microtime)
         {
+            this.time = time;
+            this.Micro = microtime;
             switch (currentgameState)
             {
                 case Stage.Stage1:
@@ -65,17 +74,15 @@ namespace FPS.Model
                     }
                     break;
                 case Stage.Stage2:
-                    
-                    
+                    enemy1.Update();
+                    enemy1.SetWaypoints(level.Waypoints);
+
                     break;
                 case Stage.Stage3:
                    this.bossSimulation.Update(time);
                     this.bossenView.Update(time);
                     Particle.Update(microtime);
-                    
-                        particlesystem.Update(time);
-                    
-                    
+                    particlesystem.Update(time);
                     break;
             }
         }
@@ -84,13 +91,13 @@ namespace FPS.Model
             switch (currentgameState)
             {
                 case Stage.Stage1:
-                    
                     background.DrawStage1();
                     enemyView.Draw();
                     break;
                 case Stage.Stage2:
                     //background.DrawStage2();
                     levelcontroller.Draw(spritebatch);
+                    enemy1.Draw(spritebatch);
                     break;
 
                 case Stage.Stage3:

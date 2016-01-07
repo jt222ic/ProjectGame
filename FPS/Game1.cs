@@ -70,21 +70,17 @@ namespace FPS
         MachinegunAnimation machinegunAnimation;
         // playonce//  Maybe to player class;
         bool playonce = false;
+    
 
         //EnemyStageRule//
 
         EnemyStageRule StageSelection;
         PauseMenu buttonQuit, buttonResume, buttonMain;
         Texture2D pauseTexture;
-        
-
 
         //Main Menu//
-
         MainMenu mainMenu;
         Viewport graphicss;
-
-
         // 
 
         BossSimulation bossSimu;
@@ -103,10 +99,10 @@ namespace FPS
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
-           // graphics.PreferredBackBufferHeight = 640;
-            //graphics.PreferredBackBufferWidth = 600;
+            //graphics.PreferredBackBufferHeight = 640 *32;
+            //graphics.PreferredBackBufferWidth = 600 *32;
             //graphics.ApplyChanges();
-    }
+        }
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -165,13 +161,12 @@ namespace FPS
             //MediaPlayer.Play(Berserk);
             bossSimu = new BossSimulation(players);
             mainMenu = new MainMenu(graphicss,Content);
-            StageSelection = new EnemyStageRule(Content,EnemySimulation, enemyView,spriteBatch ,camera, bossSimu, graphics);
+            StageSelection = new EnemyStageRule(Content, EnemySimulation, enemyView, spriteBatch, camera, bossSimu, graphics);
             // Pause texture//
             pauseTexture = Content.Load<Texture2D>("pausebild.png");
             //pausedRectangle = new Rectangle(0, 0, pauseTexture.Width, pauseTexture.Height);
             //buttonPlay = new PauseMenu();
             //buttonPlay.Load(Content.Load<Texture2D>("ResumeButton"), new Vector2(400, 400));   // draw here  directly instead // new way of using sprite draw, and sendigng value
-
             buttonResume = new PauseMenu();
             buttonResume.Load(Content.Load<Texture2D>("Resume"), new Vector2(200, 200));
             buttonQuit = new PauseMenu();
@@ -181,13 +176,10 @@ namespace FPS
 
           
         }
-
-        
         protected override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
         }
-
         /// <summary>
         /// Allows the game to run logic such as updating the world,
         /// checking for collisions, gathering input, and playing audio.
@@ -202,12 +194,16 @@ namespace FPS
             {
                 case GameState.MainMenu:
                      mainMenu.Update();
+
                     if (mainMenu.isClicked == true)
                     {
+                        mainMenu.isClicked = false;
+                        buttonMain.isClicked = false;
+                        buttonResume.isClicked = false;
+                         // Måste göra till false annars skiftar det från pause till in -game på dirren!!! TYPISK ÄCKLIGA FEL
                         currentgameState = GameState.PlayGame;
                     }
                     break;
-
                 case GameState.PlayGame:
 
                     IsMouseVisible = false;
@@ -264,10 +260,7 @@ namespace FPS
                             {
                                 bossSimu.BallGetHit(MousePosition.X, MousePosition.Y, damage);
                             }
-
-
-
-                            reload.fade = 1;
+                     reload.fade = 1;
                     animation.fade = 0;
                 }
                 else if (prevMouse.LeftButton == ButtonState.Released && prevMouse.LeftButton == ButtonState.Released)
@@ -302,7 +295,6 @@ namespace FPS
 
                 if (mousestate.LeftButton == ButtonState.Pressed && ammo >= clip)
                 {
-
                     if (!playonce)
                     {
                         MachineLoud.Play();
@@ -355,6 +347,7 @@ namespace FPS
                     damage = 6;
                 }
             }
+
             StageSelection.SendingArmies((float)gameTime.ElapsedGameTime.TotalSeconds, (float)gameTime.ElapsedGameTime.TotalMilliseconds);
             currentKeyboard = Keyboardnow;
             prevMouse = mousestate;
@@ -363,31 +356,58 @@ namespace FPS
             trans.Update((float)gameTime.ElapsedGameTime.TotalSeconds);
             trans.transition();
             break;
-
                 case GameState.PauseMenu:
-                   
-                  
                     IsMouseVisible = true;
-
-                    if (buttonMain.isClicked && !buttonResume.isClicked)
+                     if (buttonQuit.isClicked && prevMouse.LeftButton == ButtonState.Released)
                     {
-                        buttonResume.isClicked = false;
+                        Exit();
+                    }
+                     if (buttonResume.isClicked && prevMouse.LeftButton == ButtonState.Released)
+                    {
+                        currentgameState = GameState.PlayGame;
+                    }
+                    else if (buttonMain.isClicked)
+                    {
+                        // Default Value//
+                        ammo = 7;
+                        heal = new WeaponBar(Content);
+                        players = new Player(enemies, Content);
+                        enemies = new Enemy(players, random);
+                        playerHealth = new HealthBar(Content, players, enemies);
+                        bossSimu = new BossSimulation(players);
+                        EnemySimulation = new WhackAMole(players);
+                        enemyView = new EnemyView(Content, spriteBatch, camera, EnemySimulation);
+                        StageSelection = new EnemyStageRule(Content, EnemySimulation, enemyView, spriteBatch, camera, bossSimu, graphics);
+                        //StageSelection.time = 0;
+                        //StageSelection.Micro = 0;   Behövs icke tror jag få se om jag hoppar mellan scenarier mellan de olika stegen
                         currentgameState = GameState.MainMenu;
-                    }
-                   else if (buttonQuit.isClicked)
-                    {
-                       Exit();
-                    }
-                    else if(buttonResume.isClicked)
-                    { currentgameState = GameState.PlayGame;
                     }
                     buttonQuit.Update();
                     buttonResume.Update();
                     buttonMain.Update();
                     break;
-
                 case GameState.GameOver:
-                    
+                    IsMouseVisible = true;
+                    if (buttonMain.isClicked == true)
+                    {    // så den inte returnera Gameover igen om jag startar spelet 
+                         // äckligaste lösning
+                        //DEFAULT VALUE ALL //
+                        ammo = 7;
+                        heal = new WeaponBar(Content);
+                        players = new Player(enemies, Content);
+                        enemies = new Enemy(players, random);
+                        playerHealth = new HealthBar(Content, players, enemies);
+                        bossSimu = new BossSimulation(players);
+                        EnemySimulation = new WhackAMole(players);
+                        enemyView = new EnemyView(Content, spriteBatch, camera, EnemySimulation);
+                        StageSelection = new EnemyStageRule(Content, EnemySimulation, enemyView, spriteBatch, camera, bossSimu, graphics);  
+                        //StageSelection.time = 0;
+                        //StageSelection.Micro = 0;
+                        // should change everything to default value but it doesnt work...
+                        /*StageSelection.SendingArmies((float)gameTime.ElapsedGameTime.TotalSeconds, (float)gameTime.ElapsedGameTime.TotalMilliseconds); */  // kan inte resetta timer eller instansiera nya för att gametime är bara read only.
+                        currentgameState = GameState.MainMenu;
+                    }
+                    buttonMain.Update();
                     break;
             }
             base.Update(gameTime);
@@ -445,9 +465,11 @@ namespace FPS
                     break;
 
                 case GameState.GameOver:
+                    spriteBatch.Begin();
+                    buttonMain.Draw(spriteBatch);
+                    spriteBatch.End();
                     break;
             }
-
             base.Draw(gameTime);
         }
     }

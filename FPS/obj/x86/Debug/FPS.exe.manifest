@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FPS.exe" size="185192">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FPS.exe" size="187752">
       <assemblyIdentity name="FPS" version="3.4.0.456" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>S9ebXPuVtII62xd0QgdWpimNfbg=</dsig:DigestValue>
+        <dsig:DigestValue>zNhQO6ExtdBYmUOrk6cY+yzg3VM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -318,6 +318,15 @@
       <dsig:DigestValue>nQScghKAntL9+kiYJb6+2o/Nguo=</dsig:DigestValue>
     </hash>
   </file>
+  <file name="Content\enemy.gif" size="4332">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>j7hfQ9bMH4XrzKiZNyoXWBlOi08=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="Content\firesound.wav" size="48566">
     <hash>
       <dsig:Transforms>
@@ -361,6 +370,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>DxB9Kx7ul4b8iBKgg/SpwewD/tk=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\grass.png" size="931">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>LKa6Ed49gibYyYqLuh/LohXFKns=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\Health.png" size="272">
@@ -424,6 +442,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>e4k3Mtw6/GymiiMYgQLa7fB58GA=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\path.png" size="1147">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>MFcLETbHbC3FNgNZZSFgtyUUzTU=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\pausebild.png" size="104795">

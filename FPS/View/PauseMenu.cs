@@ -33,7 +33,6 @@ namespace FPS.View
 
         public void Update()
         {
-
             mouse = Mouse.GetState();
             rectangle = new Rectangle((int)position.X, (int)position.Y, 50, 50);           // size and position off the bar
             Rectangle mouseRectangle = new Rectangle(mouse.X, mouse.Y, 1, 1 );   // rectangle of the mouse 
@@ -62,7 +61,6 @@ namespace FPS.View
             }
             else if (color.A < 255)
             {
-
                 color.A += 3;
                 isClicked = false;
             }
@@ -72,6 +70,5 @@ namespace FPS.View
         {
             spriteBatch.Draw(texture, rectangle, color);
         }
-
     }
 }

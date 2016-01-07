@@ -35,7 +35,7 @@ namespace FPS.Model
 
         public void EnemyHurtsPlayer()
         {
-            if (enemyHealth == Deadcondition)
+            if (enemyHealth <= Deadcondition)
             {
                 Dead = true;
                 enemymovement *= 0;
@@ -56,7 +56,6 @@ namespace FPS.Model
                 MonsterPerformAttack = false;
             }
         }
-
         public void Update(float time)
         {
             

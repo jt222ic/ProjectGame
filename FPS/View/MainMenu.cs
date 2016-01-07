@@ -29,11 +29,8 @@ namespace FPS.View
 
         public void Update()
         {
-           
             press = Mouse.GetState();
             rectangle = new Rectangle((int)position.X, (int)position.Y, (int)size.X,(int)size.Y);
-           
-
             if (rectangle.Contains(press.X,press.Y))
             {
                 if (press.LeftButton == ButtonState.Pressed)
@@ -43,7 +40,6 @@ namespace FPS.View
                 
             }
         }
-
         public void Draw(SpriteBatch spritebatch)
         {
             spritebatch.Begin();

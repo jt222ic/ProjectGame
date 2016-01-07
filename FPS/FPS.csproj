@@ -94,6 +94,7 @@
     <Compile Include="Model\Level.cs" />
     <Compile Include="Model\LevelController.cs" />
     <Compile Include="Model\Player.cs" />
+    <Compile Include="Model\Snake.cs" />
     <Compile Include="ParticleView\particleSystem.cs" />
     <Compile Include="ParticleView\Raiton.cs" />
     <Compile Include="ParticleView\splitterParticle.cs" />
@@ -163,10 +164,16 @@
     <Content Include="Content\Electricity.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\enemy.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\firesound.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\FiringMyLazer.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\grass.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Health.png">
@@ -182,6 +189,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\onehand.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\path.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\pausebild.png">

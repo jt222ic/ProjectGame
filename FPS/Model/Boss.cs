@@ -100,6 +100,7 @@ namespace FPS.Model
               if(BossHealth <20)
             {
                 Differentspells(3);
+                Differentspells(2);
                 Differentspells(1);
             }
         }
@@ -126,7 +127,7 @@ namespace FPS.Model
            
             if (regen1time)
             {
-
+                BossHealth += 100;
                 player.Health -= (player.Health) * 4/10;
                 regen1time = false;
             }
