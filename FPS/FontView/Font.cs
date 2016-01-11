@@ -53,7 +53,7 @@ namespace FPS.FontView
             spriteBatch.DrawString(text, "Press E -> use the available potion that your character keep".ToString(), new Vector2(0, 60), Color.Black);
             spriteBatch.DrawString(text, "Move the mousecursor/crosshair -> to aim".ToString(), new Vector2(0, 80), Color.Black);
             spriteBatch.DrawString(text, "How to start the game? -> click on play button!".ToString(), new Vector2(0, 100), Color.Black);
-            spriteBatch.DrawString(text, "Tips? -> to use shotgun - blue bar must be filled!".ToString(), new Vector2(0, 120), Color.Black);
+            spriteBatch.DrawString(text, "Press Enter In-game? -> to Pause, or Quit the game!".ToString(), new Vector2(0, 120), Color.Black);
             spriteBatch.End();
         }
 
