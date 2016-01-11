@@ -85,6 +85,7 @@
     <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="FontView\Font.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Model\Boss.cs" />
     <Compile Include="Model\BossSimulation.cs" />
@@ -93,11 +94,14 @@
     <Compile Include="Model\EnemyStageRule.cs" />
     <Compile Include="Model\Level.cs" />
     <Compile Include="Model\LevelController.cs" />
+    <Compile Include="Model\Ninja.cs" />
     <Compile Include="Model\Player.cs" />
+    <Compile Include="Model\Serpent.cs" />
     <Compile Include="Model\Snake.cs" />
     <Compile Include="ParticleView\particleSystem.cs" />
     <Compile Include="ParticleView\Raiton.cs" />
     <Compile Include="ParticleView\splitterParticle.cs" />
+    <Compile Include="SnakeView\SerpentView.cs" />
     <Compile Include="View\Background.cs" />
     <Compile Include="View\BossView.cs" />
     <Compile Include="View\PauseMenu.cs" />
@@ -135,6 +139,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Badass.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Ballz.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\BetterDoom.png">
@@ -188,6 +195,9 @@
     <Content Include="Content\MainMeny.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Ninja.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\onehand.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -203,6 +213,9 @@
     <Content Include="Content\PlayerHealth.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Pururu.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Quit.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -213,6 +226,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\Resume.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\shadow.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\twohand.png">

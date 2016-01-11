@@ -18,13 +18,13 @@ namespace FPS.View
         MouseState press;
         public bool isClicked = false;
         Vector2 size;
-        Vector2 position = new Vector2(0f,0f);
+        Vector2 position = new Vector2(0f,200f);
         public MainMenu(Viewport graphics,ContentManager Content)
         {
             
            MainScreen = Content.Load<Texture2D>("UncleDonald.jpg");
            ButtonPlay = Content.Load<Texture2D>("play.png");
-           size = new Vector2(350,300);
+           size = new Vector2(60,60);
         }
 
         public void Update()
@@ -37,13 +37,12 @@ namespace FPS.View
                 {
                     isClicked = true;
                 }
-                
             }
         }
         public void Draw(SpriteBatch spritebatch)
         {
             spritebatch.Begin();
-            spritebatch.Draw(MainScreen, new Vector2(0, 0), Color.White);
+            spritebatch.Draw(MainScreen, new Vector2(-50, -40), Color.White);
             spritebatch.Draw(ButtonPlay, rectangle, Color.White);
             spritebatch.End();
 

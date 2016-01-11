@@ -15,7 +15,7 @@ namespace FPS.Model
         public int waittime = 400;
         public int cooldown = 1;
         public int MegaBlaster = 20;
-       public bool regen1time = true;
+        public bool regen1time = true;
         public Vector2 BossPosition = new Vector2(280,200);
         public float BossSize = 255;
         public int Monstersize = 2;
@@ -23,7 +23,6 @@ namespace FPS.Model
         private bool BossImmune = false;
         public bool BossAttack;
         public bool BossDead;
-       
         private bool BossPerformClone;
         BossSphere SphereBall;
         Player player;
@@ -53,8 +52,6 @@ namespace FPS.Model
 
                 BossHealth += BossGainShield;
             }
-          
-          
         }
         public void BossClone()
         {
@@ -132,7 +129,6 @@ namespace FPS.Model
                 regen1time = false;
             }
         }
-
         public bool BossCloneNoJutsu
         {
             get
@@ -150,7 +146,6 @@ namespace FPS.Model
             else if (waittime > 0 && BossHealth > Deadcondition)
             {
                 waittime -= cooldown;
-
             }
             if (waittime == 0 && BossHealth > Deadcondition)
             {

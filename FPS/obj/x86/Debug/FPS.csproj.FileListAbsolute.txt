@@ -184,3 +184,8 @@ C:\Users\jan\Desktop\project\FPS\bin\Windows\Debug\Content\Electricity.png
 C:\Users\jan\Desktop\project\FPS\bin\Windows\Debug\Content\grass.png
 C:\Users\jan\Desktop\project\FPS\bin\Windows\Debug\Content\path.png
 C:\Users\jan\Desktop\project\FPS\bin\Windows\Debug\Content\enemy.gif
+C:\Users\jan\Desktop\project\FPS\bin\Windows\Debug\Content\Ballz.png
+C:\Users\jan\Desktop\project\FPS\bin\Windows\Debug\Content\Pururu.png
+C:\Users\jan\Desktop\project\FPS\bin\Windows\Debug\Content\Ninja.gif
+C:\Users\jan\Desktop\project\FPS\bin\Windows\Debug\Content\shadow.png
+C:\Users\jan\Desktop\project\FPS\bin\Windows\Debug\Content\Font.xnb

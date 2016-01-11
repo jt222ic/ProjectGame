@@ -27,9 +27,7 @@ namespace FPS.View
         }
         public void Update(float time)
         {
-           
              color.A -= 3;
-            
         }
         public void Draw()
         {

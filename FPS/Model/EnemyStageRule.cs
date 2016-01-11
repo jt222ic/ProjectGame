@@ -1,4 +1,6 @@
-﻿using FPS.View;
+﻿using FPS.FontView;
+using FPS.SnakeView;
+using FPS.View;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -18,8 +20,6 @@ namespace FPS.Model
         Stage2,
         Stage3,
     }
-
-
     class EnemyStageRule
     {
         
@@ -31,9 +31,13 @@ namespace FPS.Model
         LevelController levelcontroller;
         Raiton Particle;
         particleSystem particlesystem;
-        Snake enemy1;
+        //Snake enemy1;
         Level level;
-        Texture2D enemyTexture;
+        //Texture2D enemyTexture;
+        SerpentView serpentview;
+        Serpent serpent;
+        Ninja nin;
+        Font newfont;
         public float time;
         public float Micro;
         //public enum Stage
@@ -43,7 +47,7 @@ namespace FPS.Model
         //    Stage3,
         //}
 
-        public EnemyStageRule(ContentManager Content, WhackAMole Enemysimulation, EnemyView enemyView, SpriteBatch spritebatch, Camera camera, BossSimulation bosssimulation, GraphicsDeviceManager graphics)
+        public EnemyStageRule(ContentManager Content, WhackAMole Enemysimulation, EnemyView enemyView, SpriteBatch spritebatch, Camera camera, BossSimulation bosssimulation, Ninja ninja, Font font)
         {
             this.EnemySimulation = Enemysimulation;
             this.enemyView = enemyView;
@@ -51,13 +55,17 @@ namespace FPS.Model
             bossSimulation = bosssimulation;
             this.bossenView = new BossView(Content,spritebatch, camera, bossSimulation);
             level = new Level();
-            levelcontroller = new LevelController(Content,level);
+            levelcontroller = new LevelController(Content, level);
             Particle = new Raiton(Content, bossSimulation);
             particlesystem = new particleSystem(Content, bossSimulation);
-            enemyTexture = Content.Load<Texture2D>("enemy.gif");
-            enemy1 = new Snake(enemyTexture,Vector2.Zero,0.9f);
+            serpent = new Serpent();
+            nin = ninja;
+            serpentview = new SerpentView(Content, serpent,nin);
+            newfont = font;
+            //enemyTexture = Content.Load<Texture2D>("Ballz.png");
+            //enemy1 = new Snake(enemyTexture,Vector2.Zero,0.9f);
         }
-       public Stage currentgameState = Stage.Stage3;
+       public Stage currentgameState = Stage.Stage1;
 
         public void SendingArmies(float time, float microtime)
         {
@@ -74,9 +82,16 @@ namespace FPS.Model
                     }
                     break;
                 case Stage.Stage2:
-                    enemy1.Update();
-                    enemy1.SetWaypoints(level.Waypoints);
-
+                    serpent.Update(time);
+                    serpent.Crazyness();
+                    nin.NinjaTeleportation(time);
+                    
+                    if(nin.miniBossDeath)
+                    {
+                        currentgameState = Stage.Stage3;
+                    }
+                    //enemy1.Update();
+                    //enemy1.SetWaypoints(level.Waypoints);
                     break;
                 case Stage.Stage3:
                    this.bossSimulation.Update(time);
@@ -93,11 +108,14 @@ namespace FPS.Model
                 case Stage.Stage1:
                     background.DrawStage1();
                     enemyView.Draw();
+                    newfont.DrawFont(spritebatch);
                     break;
                 case Stage.Stage2:
-                    //background.DrawStage2();
-                    levelcontroller.Draw(spritebatch);
-                    enemy1.Draw(spritebatch);
+                    background.DrawStage2();
+                    serpentview.NinjaDraw(spritebatch);
+                    serpentview.Draw(spritebatch);
+                    newfont.DrawMiniBoss(spritebatch);
+                    newfont.DrawFont(spritebatch);
                     break;
 
                 case Stage.Stage3:
@@ -106,7 +124,9 @@ namespace FPS.Model
                     this.bossenView.DrawSphere();
                     this.Particle.Draw(spritebatch);
                     particlesystem.Draw(spritebatch);
-                  break;
+                    newfont.DrawLastBoss(spritebatch);
+                    newfont.DrawFont(spritebatch);
+                    break;
 
             }
         }

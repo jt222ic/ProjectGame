@@ -22,7 +22,6 @@ namespace FPS.Model
         }
         public void summon()
         {
-           
                 if (spawn >= 1)
                 {
                     spawn = 0;

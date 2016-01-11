@@ -17,9 +17,7 @@ namespace RaitonParticle
         BossSimulation boss;
         Texture2D Thundah;
         int frameControl;
-        bool explosion1 =false;
-        bool explosion2 = false;
-        bool explosion3 =false;
+        
         public Raiton(ContentManager Content, BossSimulation BossSimu)
         {
 

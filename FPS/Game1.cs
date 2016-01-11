@@ -1,4 +1,5 @@
-﻿using FPS.Model;
+﻿using FPS.FontView;
+using FPS.Model;
 using FPS.View;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
@@ -29,10 +30,11 @@ namespace FPS
         ReLoadAnimation reload;
         EnemyView enemyView;
         TheOneWhoControl BoomEffect;
-        float damage = 1;
         ExplosionOnClick ClickExplosion;
         Transition trans;
-        // Controller check ammo//  maybe put on Player Class, which i made them to public global variable or get set return statement function
+        Font fontview;
+
+        float damage = 1;
         int maxammo = 7;
         float  ammo = 7;
         int clip = 0;
@@ -70,7 +72,7 @@ namespace FPS
         MachinegunAnimation machinegunAnimation;
         // playonce//  Maybe to player class;
         bool playonce = false;
-    
+        Ninja nin;
 
         //EnemyStageRule//
 
@@ -157,11 +159,14 @@ namespace FPS
             MachineLoud = Content.Load<SoundEffect>("Mp5");
             heal = new WeaponBar(Content);
 
+       
 
+            
             //MediaPlayer.Play(Berserk);
+            nin = new Ninja(players);
             bossSimu = new BossSimulation(players);
             mainMenu = new MainMenu(graphicss,Content);
-            StageSelection = new EnemyStageRule(Content, EnemySimulation, enemyView, spriteBatch, camera, bossSimu, graphics);
+           
             // Pause texture//
             pauseTexture = Content.Load<Texture2D>("pausebild.png");
             //pausedRectangle = new Rectangle(0, 0, pauseTexture.Width, pauseTexture.Height);
@@ -174,7 +179,13 @@ namespace FPS
             buttonMain = new PauseMenu();
             buttonMain.Load(Content.Load<Texture2D>("MainMeny"), new Vector2(400, 400));
 
-          
+
+            // FONT //
+
+            fontview = new Font(players, Content, bossSimu, nin);
+
+            StageSelection = new EnemyStageRule(Content, EnemySimulation, enemyView, spriteBatch, camera, bossSimu, nin, fontview);
+
         }
         protected override void UnloadContent()
         {
@@ -221,8 +232,6 @@ namespace FPS
                     playerHealth.Update();
                     mousestate = Mouse.GetState();
                     MousePosition = camera.getLogicalCord(mousestate.X, mousestate.Y);
-
-
                     if (Keyboardnow.IsKeyDown(Keys.E) && currentKeyboard.IsKeyUp(Keys.E))
                     {
                         players.Regenerate();
@@ -259,6 +268,10 @@ namespace FPS
                             if(StageSelection.currentgameState == Stage.Stage3)
                             {
                                 bossSimu.BallGetHit(MousePosition.X, MousePosition.Y, damage);
+                            }
+                            if(StageSelection.currentgameState == Stage.Stage2)
+                            {
+                                nin.getHit(MousePosition.X, MousePosition.Y, damage);
                             }
                      reload.fade = 1;
                     animation.fade = 0;
@@ -316,11 +329,14 @@ namespace FPS
                             {
                                 bossSimu.BallGetHit(MousePosition.X, MousePosition.Y, damage);
                             }
+                            if (StageSelection.currentgameState == Stage.Stage2)
+                            {
+                                nin.getHit(MousePosition.X, MousePosition.Y, damage);
+                            }
                             damage = 1;
                 }
                 if (mousestate.RightButton == ButtonState.Pressed && ammo <= maxammo)
                 {
-
                     soundEffect.Play();
                     soundEffect.IsLooped = false;
                     heal.UpdateReLoad();
@@ -340,6 +356,10 @@ namespace FPS
                                 if (StageSelection.currentgameState == Stage.Stage3)
                                 {
                                     bossSimu.BallGetHit(MousePosition.X, MousePosition.Y, damage);
+                                }
+                                if (StageSelection.currentgameState == Stage.Stage2)
+                                {
+                                    nin.getHit(MousePosition.X, MousePosition.Y, damage);
                                 }
                                 frameControl = 0;
                     }
@@ -368,18 +388,20 @@ namespace FPS
                     }
                     else if (buttonMain.isClicked)
                     {
-                        // Default Value//
+                        
                         ammo = 7;
+                       
                         heal = new WeaponBar(Content);
                         players = new Player(enemies, Content);
                         enemies = new Enemy(players, random);
+                        nin = new Ninja(players);
                         playerHealth = new HealthBar(Content, players, enemies);
                         bossSimu = new BossSimulation(players);
                         EnemySimulation = new WhackAMole(players);
                         enemyView = new EnemyView(Content, spriteBatch, camera, EnemySimulation);
-                        StageSelection = new EnemyStageRule(Content, EnemySimulation, enemyView, spriteBatch, camera, bossSimu, graphics);
-                        //StageSelection.time = 0;
-                        //StageSelection.Micro = 0;   Behövs icke tror jag få se om jag hoppar mellan scenarier mellan de olika stegen
+                        StageSelection = new EnemyStageRule(Content, EnemySimulation, enemyView, spriteBatch, camera, bossSimu, nin, fontview);
+                        fontview = new Font(players, Content, bossSimu, nin);
+                        StageSelection.currentgameState = Stage.Stage1;
                         currentgameState = GameState.MainMenu;
                     }
                     buttonQuit.Update();
@@ -395,16 +417,15 @@ namespace FPS
                         ammo = 7;
                         heal = new WeaponBar(Content);
                         players = new Player(enemies, Content);
+                        nin = new Ninja(players);
                         enemies = new Enemy(players, random);
                         playerHealth = new HealthBar(Content, players, enemies);
                         bossSimu = new BossSimulation(players);
                         EnemySimulation = new WhackAMole(players);
                         enemyView = new EnemyView(Content, spriteBatch, camera, EnemySimulation);
-                        StageSelection = new EnemyStageRule(Content, EnemySimulation, enemyView, spriteBatch, camera, bossSimu, graphics);  
-                        //StageSelection.time = 0;
-                        //StageSelection.Micro = 0;
-                        // should change everything to default value but it doesnt work...
-                        /*StageSelection.SendingArmies((float)gameTime.ElapsedGameTime.TotalSeconds, (float)gameTime.ElapsedGameTime.TotalMilliseconds); */  // kan inte resetta timer eller instansiera nya för att gametime är bara read only.
+                        StageSelection = new EnemyStageRule(Content, EnemySimulation, enemyView, spriteBatch, camera, bossSimu, nin, fontview);
+                        StageSelection.currentgameState = Stage.Stage1;
+                        fontview = new Font(players, Content, bossSimu, nin);
                         currentgameState = GameState.MainMenu;
                     }
                     buttonMain.Update();
@@ -425,11 +446,14 @@ namespace FPS
             {
                 case GameState.MainMenu:
                     mainMenu.Draw(spriteBatch);
+                    fontview.MainScreenInstruction(spriteBatch);
                     break;
 
                 case GameState.PlayGame:
+
                    
                     StageSelection.Draw(spriteBatch);
+                    
 
                     if (!players.swap)    
                     {
@@ -467,6 +491,7 @@ namespace FPS
                 case GameState.GameOver:
                     spriteBatch.Begin();
                     buttonMain.Draw(spriteBatch);
+                    fontview.GameOverFont(spriteBatch);
                     spriteBatch.End();
                     break;
             }

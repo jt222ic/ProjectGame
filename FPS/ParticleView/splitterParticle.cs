@@ -21,8 +21,7 @@ namespace RaitonParticle
         BossSimulation BossSimu;
             public splitterParticle(Texture2D newsprites, Random rand, BossSimulation bossSimu)
             {
-            BossSimu = bossSimu;
-            
+                 BossSimu = bossSimu;
                 nowsprites = newsprites;
                 randomDirection = new Vector2((float)rand.NextDouble() - 0.5f, (float)rand.NextDouble() - 0.5f);
                 randomDirection.Normalize();
@@ -34,7 +33,6 @@ namespace RaitonParticle
             {
                 velocity = velocity + acceleration * elapsedTime;
                 position = position + velocity * elapsedTime;
-
             }
 
             public void Draw(Texture2D spark, SpriteBatch spriteBatch)

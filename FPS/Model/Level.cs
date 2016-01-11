@@ -15,7 +15,7 @@ namespace FPS.Model
 
         public Level()
         {                                         //http://msdn.microsoft.com/en-us/library/7977ey2c.aspx //
-
+         
             waypoints.Enqueue(new Vector2(2, 0) * 32);
             waypoints.Enqueue(new Vector2(2, 1) * 32);
             waypoints.Enqueue(new Vector2(3, 1) * 32);
@@ -70,8 +70,7 @@ namespace FPS.Model
                     Texture2D texture = tileTextures[textureIndex];
                     spriteBatch.Draw(texture, new Rectangle(
                         x * 32, y * 32, 32, 32), Color.White);
-
-                    spriteBatch.End();// transformera texturer till skärmen med tillämpning av Graphics.
+                    spriteBatch.End();                          // transformera texturer till skärmen med tillämpning av Graphics.
                 }
 
             }

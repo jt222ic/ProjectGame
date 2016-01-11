@@ -37,7 +37,6 @@ namespace RaitonParticle
                     {
                         particleList[i].Update(totalSeconds);
                     }
-                
             }
             
         }

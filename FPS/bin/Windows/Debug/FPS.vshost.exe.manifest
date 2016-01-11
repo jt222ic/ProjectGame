@@ -43,14 +43,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FPS.exe" size="187240">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FPS.exe" size="193896">
       <assemblyIdentity name="FPS" version="3.4.0.456" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>y70F5UpgKwlQPNb5hdihxadM3o0=</dsig:DigestValue>
+        <dsig:DigestValue>HGcjkX3hPdhAAhosqwGjd9lV7kY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -199,6 +199,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>wMTrZGx5IqYsw2dynvHzAEwVbf4=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\Ballz.png" size="1572">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>h7udVyvmV+hgYgHQqXg28WHuvSw=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\BetterDoom.png" size="9273">
@@ -354,6 +363,15 @@
       <dsig:DigestValue>rS5fIBXNJCvvtYLxZG89YrNLSLM=</dsig:DigestValue>
     </hash>
   </file>
+  <file name="Content\Font.xnb" size="21521">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>KnUpBPgfB9JsZwj8jaxwimDrNVg=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="Content\gatsu.wma" size="7405674">
     <hash>
       <dsig:Transforms>
@@ -426,6 +444,15 @@
       <dsig:DigestValue>xqhPxbua3m1cZqucKQBx2h0Nm/E=</dsig:DigestValue>
     </hash>
   </file>
+  <file name="Content\Ninja.gif" size="9597">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>9cOuxrt4rUyo6Mw9GPEGsYqcBj0=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="Content\oldschool.xnb" size="731017">
     <hash>
       <dsig:Transforms>
@@ -480,6 +507,15 @@
       <dsig:DigestValue>YrcVweqTsb/GbxscxVJR2Dgyozo=</dsig:DigestValue>
     </hash>
   </file>
+  <file name="Content\Pururu.png" size="8660">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>N1osMImS4SymzSPTz7kHb4msxuk=</dsig:DigestValue>
+    </hash>
+  </file>
   <file name="Content\Quit.png" size="56978">
     <hash>
       <dsig:Transforms>
@@ -523,6 +559,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
       <dsig:DigestValue>67occKUHAkhMF4R4TjP7A1B0hW4=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Content\shadow.png" size="1113">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
+      <dsig:DigestValue>DN4kq7xwkWZ1BgSC85EBN1tcIeE=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Content\shotgun1.xnb" size="198571">

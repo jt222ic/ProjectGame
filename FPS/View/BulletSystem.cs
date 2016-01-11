@@ -11,15 +11,11 @@ namespace FPS.View
 
         public  List<Bullet> particles = new List<Bullet>();
         private const int maxParticles = 0;
-        // Bullet sParticle = new Bullet();
-        
         Random test = new Random();
-
         public BulletSystem(Texture2D sprites) // skicka in i ny position
         {
             particles.Add(new Bullet(sprites, test));
         }
-
         public void Update(float totalSeconds)
         {
             foreach(Bullet bulletrain in particles)
@@ -27,7 +23,6 @@ namespace FPS.View
                 bulletrain.Update(totalSeconds);
             }
         }
-        
         public void Draw(Texture2D spark, Camera camera, SpriteBatch spriteBatch)
         {
 

@@ -8,18 +8,18 @@ using System.Text;
 
 namespace FPS.Model
 {
+
     class Snake 
     {
 
         private Queue<Vector2> waypoints = new Queue<Vector2>();
-
         public Vector2 position = new Vector2(0.0f,0.1f);
         public Vector2 velocity;
         public Vector2 center = new Vector2(0,0);
         public Vector2 origin = new Vector2(0,0);
         protected float rotation = 0;
 
-        float speed = 0.5f;
+        float speed = 0.1f;
         Texture2D enemyTexture;
 
         public Snake(Texture2D texture, Vector2 position, float speed)
@@ -28,7 +28,6 @@ namespace FPS.Model
             this.speed = speed;
             this.position = position;
         }
-
         public void SetWaypoints(Queue<Vector2> waypoints)
         {
             foreach (Vector2 waypoint in waypoints)

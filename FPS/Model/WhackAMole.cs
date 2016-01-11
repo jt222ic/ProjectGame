@@ -15,7 +15,10 @@ namespace FPS.Model
         float spawn = 0;
         Random rand = new Random();
         public bool allMonsterdead;
-        int monsterCount = 4;
+        int monsterCount = 10;
+        int tick;
+        float spawnDelay = 0.5f;
+        float elapsedSeconds;
     
 
         public WhackAMole(Player player)
@@ -24,18 +27,17 @@ namespace FPS.Model
         }
         public void TestSpawning()
         {
+          
             if (spawn >= 1)
             {
+                tick++;
                 spawn = 0;
-
-                if (enemyspawn.Count() < 4)
+                if (tick <= monsterCount)
                 {
                     enemyspawn.Add(new Enemy(player, rand));
                 }
             }
         }
-     
-
         public bool reallyDead()
         {
             return allMonsterdead;
@@ -48,16 +50,40 @@ namespace FPS.Model
         {
             float seconds = time;
             spawn += seconds;
-            TestSpawning();
-          
+            elapsedSeconds += time;
 
+            if (elapsedSeconds > spawnDelay)
+            {
+                TestSpawning();
+                elapsedSeconds = 0;
+            }
 
+            for (int i = enemyspawn.Count - 1; i >= 0; --i)
+            {
+                if(enemyspawn[i].Dead)
+                {
+                    enemyspawn.RemoveAt(i);
+                    if(EnemiesDead())
+                    {
+                        allMonsterdead = true;
+                    }
+                }
+            }
             foreach (Enemy enemies in enemyspawn)
             {
                 enemies.Update(seconds);
                 enemies.EnemyHurtsPlayer();
                 RotationEnemy(enemies);
             }
+        }
+
+        public bool EnemiesDead()
+        {
+            if(enemyspawn.Count <= 0)
+            {
+                return true;
+            }
+            return false;
         }
 
         public void RotationEnemy(Enemy enemies)
@@ -76,10 +102,8 @@ namespace FPS.Model
         }
         public void setEnemyDead(float coordX, float coordY, float damage)
         {
-
             foreach (Enemy enemies in enemyspawn)
             {
-
                 if (!enemies.Deadyet)
                 {
                     Vector2 MonsterlogicMouse = new Vector2(coordX, coordY);
@@ -87,12 +111,8 @@ namespace FPS.Model
 
                     if (containCoord)
                     {
-                       
                         enemies.enemyHealth -= damage;
-                       
-                       
                     }
-
                 }
             }
         }

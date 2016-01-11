@@ -15,9 +15,6 @@ namespace FPS.View
         private BulletSystem _splittersystem;
         Camera camera;
         SpriteBatch spriteBatch;
-        
-
-
         public TheOneWhoControl(ContentManager Content, SpriteBatch spriteBatch, Camera camera)
         {
             Spark = Content.Load<Texture2D>("AssHole.png");
@@ -28,7 +25,6 @@ namespace FPS.View
         public void Updateeverything(float gameTime)
         {
             float timeElapsedSeconds = gameTime;
-            
             _splittersystem.Update(timeElapsedSeconds);
         }
 

@@ -1,0 +1,4 @@
+JRPG
+
+The Status of Boss Wont be changed if you restart the game, but the game can still finish.
+need re-design 

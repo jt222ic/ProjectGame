@@ -13,9 +13,9 @@ namespace FPS.Model
         Vector2 enemymoving = new Vector2(20f, 20f);
         Vector2 distancfe = new Vector2(400, 100);
         Vector2 centerPosition = new Vector2(375, 240);
-        float angle;
+        float angle = 50;
         bool Dead;
-        Boss boss;
+        
 
         public BossSphere()
         {
@@ -39,7 +39,7 @@ namespace FPS.Model
         {
             get
             {
-                return new Vector2((float)Math.Cos(angle + 200) * 400, (float)Math.Sin(angle + 250) * 100);  // original dont remove
+                return new Vector2((float)Math.Cos(angle) * 400, (float)Math.Sin(angle) * 100);  // original dont remove
             }
 
         }
