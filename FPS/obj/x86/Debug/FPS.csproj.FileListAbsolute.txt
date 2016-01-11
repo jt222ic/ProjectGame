@@ -170,7 +170,6 @@ C:\Users\jan\Desktop\project - kopia\FPS\bin\Windows\Debug\SharpDX.XInput.xml
 C:\Users\jan\Desktop\project - kopia\FPS\bin\Windows\Debug\SharpDX.RawInput.xml
 C:\Users\jan\Desktop\project - kopia\FPS\bin\Windows\Debug\SharpDX.Direct3D9.xml
 C:\Users\jan\Desktop\project - kopia\FPS\obj\x86\Debug\FPS.csprojResolveAssemblyReference.cache
-C:\Users\jan\Desktop\project\FPS\obj\x86\Debug\FPS.csprojResolveAssemblyReference.cache
 C:\Users\jan\Desktop\project\FPS\bin\Windows\Debug\FPS.exe.manifest
 C:\Users\jan\Desktop\project\FPS\bin\Windows\Debug\FPS.application
 C:\Users\jan\Desktop\project\FPS\obj\x86\Debug\FPS.exe.manifest
@@ -189,3 +188,5 @@ C:\Users\jan\Desktop\project\FPS\bin\Windows\Debug\Content\Pururu.png
 C:\Users\jan\Desktop\project\FPS\bin\Windows\Debug\Content\Ninja.gif
 C:\Users\jan\Desktop\project\FPS\bin\Windows\Debug\Content\shadow.png
 C:\Users\jan\Desktop\project\FPS\bin\Windows\Debug\Content\Font.xnb
+C:\Users\jan\Desktop\project\FPS\obj\x86\Debug\FPS.TrustInfo.xml
+C:\Users\jan\Desktop\project\FPS\obj\x86\Debug\FPS.csprojResolveAssemblyReference.cache
